@@ -16,6 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let middle = storyboard.instantiateViewControllerWithIdentifier("middle")
+        let top = storyboard.instantiateViewControllerWithIdentifier("top")
+        let viewContainer = LayoutViewController.containerViewWith(middle, topVC: top)
+        self.window?.rootViewController = viewContainer
+        self.window?.makeKeyAndVisible()
         return true
     }
 
