@@ -14,6 +14,8 @@
 		3E0489161C585108002CBBF7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E0489141C585108002CBBF7 /* LaunchScreen.storyboard */; };
 		3E0489211C585108002CBBF7 /* WTBUiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0489201C585108002CBBF7 /* WTBUiOSTests.swift */; };
 		3E04892C1C585108002CBBF7 /* WTBUiOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E04892B1C585108002CBBF7 /* WTBUiOSUITests.swift */; };
+		DCB6F0421C5853AA005177A7 /* RadioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB6F0411C5853AA005177A7 /* RadioPlayer.swift */; };
+		DCB6F0441C5853D6005177A7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCB6F0431C5853D6005177A7 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		3E0489271C585108002CBBF7 /* WTBUiOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WTBUiOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E04892B1C585108002CBBF7 /* WTBUiOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTBUiOSUITests.swift; sourceTree = "<group>"; };
 		3E04892D1C585108002CBBF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DCB6F0411C5853AA005177A7 /* RadioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioPlayer.swift; sourceTree = "<group>"; };
+		DCB6F0431C5853D6005177A7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCB6F0441C5853D6005177A7 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +82,7 @@
 		3E0488FF1C585108002CBBF7 = {
 			isa = PBXGroup;
 			children = (
+				DCB6F0431C5853D6005177A7 /* AVFoundation.framework */,
 				3E04890A1C585108002CBBF7 /* WTBUiOS */,
 				3E04891F1C585108002CBBF7 /* WTBUiOSTests */,
 				3E04892A1C585108002CBBF7 /* WTBUiOSUITests */,
@@ -99,6 +105,7 @@
 			children = (
 				3E04890B1C585108002CBBF7 /* AppDelegate.swift */,
 				3E04890D1C585108002CBBF7 /* ViewController.swift */,
+				DCB6F0411C5853AA005177A7 /* RadioPlayer.swift */,
 				3E04890F1C585108002CBBF7 /* Main.storyboard */,
 				3E0489121C585108002CBBF7 /* Assets.xcassets */,
 				3E0489141C585108002CBBF7 /* LaunchScreen.storyboard */,
@@ -256,6 +263,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCB6F0421C5853AA005177A7 /* RadioPlayer.swift in Sources */,
 				3E04890E1C585108002CBBF7 /* ViewController.swift in Sources */,
 				3E04890C1C585108002CBBF7 /* AppDelegate.swift in Sources */,
 			);
@@ -484,6 +492,7 @@
 				3E0489321C585108002CBBF7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3E0489331C585108002CBBF7 /* Build configuration list for PBXNativeTarget "WTBUiOSTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +501,7 @@
 				3E0489351C585108002CBBF7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3E0489361C585108002CBBF7 /* Build configuration list for PBXNativeTarget "WTBUiOSUITests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +510,7 @@
 				3E0489381C585108002CBBF7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
