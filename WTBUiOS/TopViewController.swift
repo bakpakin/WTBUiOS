@@ -8,12 +8,29 @@
 
 import UIKit
 
-class TopViewController: UIViewController {
+class TopViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    let daysOfWeek = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+    
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var scheduleTableView: UITableView!
+    
+    @IBAction func segmentSwitch(sender: AnyObject) {
+        let selectedSegment = segmentedControl.selectedSegmentIndex
+        if selectedSegment==0{
+            scheduleTableView.hidden = false
+        }else{
+            scheduleTableView.hidden = true
+        }
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
          print("A")
+        scheduleTableView.delegate = self
+        scheduleTableView.dataSource = self
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -29,7 +46,17 @@ class TopViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-/*
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return daysOfWeek.count
+    }
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("scheduleCell")
+        cell!.textLabel!.text = daysOfWeek[indexPath.row]
+        
+        return cell!
+    }
+    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
