@@ -15,6 +15,7 @@
 		3E0489211C585108002CBBF7 /* WTBUiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0489201C585108002CBBF7 /* WTBUiOSTests.swift */; };
 		3E04892C1C585108002CBBF7 /* WTBUiOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E04892B1C585108002CBBF7 /* WTBUiOSUITests.swift */; };
 		3E95E2DB1C61217B00261A80 /* CoverArtLookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E95E2DA1C61217B00261A80 /* CoverArtLookup.swift */; };
+		AE0A7A3E9353B326BC675027 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C181A0251FA6B1C03EF0F29 /* Pods.framework */; };
 		DCB6F0421C5853AA005177A7 /* RadioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB6F0411C5853AA005177A7 /* RadioPlayer.swift */; };
 		DCB6F0441C5853D6005177A7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCB6F0431C5853D6005177A7 /* AVFoundation.framework */; };
 		DCDE66221C5956C800592D95 /* VerticalScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDE66211C5956C800592D95 /* VerticalScrollViewController.swift */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3C181A0251FA6B1C03EF0F29 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E0489081C585108002CBBF7 /* WTBUiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WTBUiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E04890B1C585108002CBBF7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3E04890D1C585108002CBBF7 /* LayoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutViewController.swift; sourceTree = "<group>"; };
@@ -54,11 +56,13 @@
 		3E04892B1C585108002CBBF7 /* WTBUiOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTBUiOSUITests.swift; sourceTree = "<group>"; };
 		3E04892D1C585108002CBBF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3E95E2DA1C61217B00261A80 /* CoverArtLookup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoverArtLookup.swift; sourceTree = "<group>"; };
+		CFA82A567F6259E0743A9EFC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		DCB6F0411C5853AA005177A7 /* RadioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioPlayer.swift; sourceTree = "<group>"; };
 		DCB6F0431C5853D6005177A7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		DCDE66211C5956C800592D95 /* VerticalScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalScrollViewController.swift; sourceTree = "<group>"; };
 		DCDE66231C595E0400592D95 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		DCDE66251C5963F000592D95 /* TopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
+		E6A6CD7E08ACCC34D15F9370 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +71,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCB6F0441C5853D6005177A7 /* AVFoundation.framework in Frameworks */,
+				AE0A7A3E9353B326BC675027 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +92,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3CC48697F43A5F04508591A6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3C181A0251FA6B1C03EF0F29 /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3E0488FF1C585108002CBBF7 = {
 			isa = PBXGroup;
 			children = (
@@ -95,6 +108,8 @@
 				3E04891F1C585108002CBBF7 /* WTBUiOSTests */,
 				3E04892A1C585108002CBBF7 /* WTBUiOSUITests */,
 				3E0489091C585108002CBBF7 /* Products */,
+				648929BC6EB48B37E19C38D2 /* Pods */,
+				3CC48697F43A5F04508591A6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -144,6 +159,15 @@
 			path = WTBUiOSUITests;
 			sourceTree = "<group>";
 		};
+		648929BC6EB48B37E19C38D2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CFA82A567F6259E0743A9EFC /* Pods.debug.xcconfig */,
+				E6A6CD7E08ACCC34D15F9370 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -151,9 +175,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3E0489301C585108002CBBF7 /* Build configuration list for PBXNativeTarget "WTBUiOS" */;
 			buildPhases = (
+				D196B15D0CCB9094EF4014E8 /* Check Pods Manifest.lock */,
 				3E0489041C585108002CBBF7 /* Sources */,
 				3E0489051C585108002CBBF7 /* Frameworks */,
 				3E0489061C585108002CBBF7 /* Resources */,
+				F0EDB99E4427DC18D50342C7 /* Embed Pods Frameworks */,
+				E7D113DC781F00B9A87852EB /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -269,6 +296,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D196B15D0CCB9094EF4014E8 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E7D113DC781F00B9A87852EB /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F0EDB99E4427DC18D50342C7 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3E0489041C585108002CBBF7 /* Sources */ = {
@@ -421,6 +496,7 @@
 		};
 		3E0489311C585108002CBBF7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CFA82A567F6259E0743A9EFC /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = WTBUiOS/Info.plist;
@@ -432,6 +508,7 @@
 		};
 		3E0489321C585108002CBBF7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E6A6CD7E08ACCC34D15F9370 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = WTBUiOS/Info.plist;

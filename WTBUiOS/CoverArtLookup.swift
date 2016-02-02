@@ -6,12 +6,19 @@
 //  Copyright © 2016 Calvin Rose. All rights reserved.
 //
 
+import Alamofire
+import SwiftyJSON
+
 class CoverArtLookup {
     
     static func getArt(artist: String, song: String) {
         
-        let query = "\(artist), \(song)".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
-        let url = "https://itunes.apple.com/search?term=\(query)"
+        Alamofire.request(.GET, "https://itunes.apple.com/search", parameters: ["term": "\(artist) \(song)"])
+            .responseJSON { response in
+                if let JSON = response.result.value {
+                    print("JSON: \(JSON)")
+                }
+        }
         
         
     }
