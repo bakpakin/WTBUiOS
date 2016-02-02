@@ -8,6 +8,18 @@
 
 import UIKit
 
+// Enable default logging with XCGLogger
+//
+// log.verbose("A verbose message, usually useful when working on a specific problem")
+// log.debug("A debug message")
+// log.info("An info message, probably useful to power users looking in console.app")
+// log.warning("A warning message, may indicate a possible error")
+// log.error("An error occurred, but it's recoverable, just info about what happened")
+// log.severe("A severe error occurred, we are likely about to crash now")
+//
+import XCGLogger
+let log = XCGLogger.defaultInstance()
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -22,6 +34,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let viewContainer = LayoutViewController.containerViewWith(middle, topVC: top)
         self.window?.rootViewController = viewContainer
         self.window?.makeKeyAndVisible()
+        
+        // Set up XCGLogger
+        log.setup(.Debug, showThreadName: true, showLogLevel: true, showFileNames: true, showLineNumbers: true)
+        
         return true
     }
 

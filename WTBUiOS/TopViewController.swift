@@ -13,15 +13,14 @@ class TopViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-         print("A")
     }
     
     override func viewWillAppear(animated: Bool) {
-         print("B")
+
     }
     
     override func viewDidAppear(animated: Bool) {
-        print("C")
+
     }
 
     override func didReceiveMemoryWarning() {

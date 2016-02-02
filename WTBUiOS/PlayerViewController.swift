@@ -8,6 +8,9 @@
 
 import UIKit
 import Alamofire
+import AlamofireImage
+import SwiftyJSON
+import XCGLogger
 
 class PlayerViewController: UIViewController {
 
@@ -24,15 +27,30 @@ class PlayerViewController: UIViewController {
     
     private func getSongData() {
         
+        // TODO Get the currently playing song on the station
         let artist = "Michael Jackson"
         let song = "Thriller"
         
-        Alamofire.request(.GET, "https://itunes.apple.com/search", parameters: ["term": "\(artist) \(song)"])
+        Alamofire.request(.GET, "https://itunes.apple.com/search", parameters: ["term": "\(artist) \(song)", "limit": "1"])
             .responseJSON { response in
-                if let JSON = response.result.value {
-                    print("JSON: \(JSON)")
+                if let jsonNative = response.result.value {
+                    
+                    // Convert to SwiftyJSON
+                    let json = JSON(jsonNative)
+                    let artworkURL : String = String(json["results"][0]["artworkUrl100"])
+                    log.debug("Retrieved album artwork url for \"\(artist) : \(song)\" : \(artworkURL)")
+                    log.debug("\(self.imageCoverArt)")
+                    // Make another request
+                    Alamofire.request(Method.GET, artworkURL).responseImage { repsonse in
+                        if let image = response.result.value {
+                            let size = CGSize(width: 300.00, height: 300.0)
+                            //let aspectScaledToFillImage = image.af_imageScaledToSize(size)
+                            //self.imageCoverArt.image = aspectScaledToFillImage
+                        }
+                    }
+                    
                 } else {
-                    print("Did not get JSON from itunes API for cover art.")
+                    log.debug("Did not get JSON from itunes API for cover art.")
                 }
         }
         
@@ -42,35 +60,34 @@ class PlayerViewController: UIViewController {
         super.viewDidLoad()
         buttonPlay.setTitle("Play", forState: UIControlState.Normal)
         getSongData()
-    
+       
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     @IBAction func playButtonClicked(sender: AnyObject) {
-            RadioPlayer.sharedInstance.toggle()
-        }
+        RadioPlayer.sharedInstance.toggle()
+    }
     
     
-        @IBAction func sliderValueChanged(sender: AnyObject) {
-    
-            RadioPlayer.sharedInstance.volume(sliderVolume.value)
-    
-        }
-    
-        func playRadio() {
-            RadioPlayer.sharedInstance.play()
-            buttonPlay.setTitle("Pause", forState: UIControlState.Normal)
-            miniButtonPlay.setTitle("Pause", forState: UIControlState.Normal)
-        }
-    
-        func pauseRadio() {
-            RadioPlayer.sharedInstance.pause()
-            buttonPlay.setTitle("Play", forState: UIControlState.Normal)
-            miniButtonPlay.setTitle("Play", forState: UIControlState.Normal)
-            
-        }
+    @IBAction func sliderValueChanged(sender: AnyObject) {
+        RadioPlayer.sharedInstance.volume(sliderVolume.value)
+    }
+
+    func playRadio() {
+        RadioPlayer.sharedInstance.play()
+        buttonPlay.setTitle("Pause", forState: UIControlState.Normal)
+        miniButtonPlay.setTitle("Pause", forState: UIControlState.Normal)
+    }
+
+    func pauseRadio() {
+        RadioPlayer.sharedInstance.pause()
+        buttonPlay.setTitle("Play", forState: UIControlState.Normal)
+        miniButtonPlay.setTitle("Play", forState: UIControlState.Normal)
+        
+    }
 
 }
