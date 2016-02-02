@@ -14,6 +14,7 @@
 		3E0489161C585108002CBBF7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E0489141C585108002CBBF7 /* LaunchScreen.storyboard */; };
 		3E0489211C585108002CBBF7 /* WTBUiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0489201C585108002CBBF7 /* WTBUiOSTests.swift */; };
 		3E04892C1C585108002CBBF7 /* WTBUiOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E04892B1C585108002CBBF7 /* WTBUiOSUITests.swift */; };
+		3E95E2DB1C61217B00261A80 /* CoverArtLookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E95E2DA1C61217B00261A80 /* CoverArtLookup.swift */; };
 		DCB6F0421C5853AA005177A7 /* RadioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB6F0411C5853AA005177A7 /* RadioPlayer.swift */; };
 		DCB6F0441C5853D6005177A7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCB6F0431C5853D6005177A7 /* AVFoundation.framework */; };
 		DCDE66221C5956C800592D95 /* VerticalScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDE66211C5956C800592D95 /* VerticalScrollViewController.swift */; };
@@ -52,6 +53,7 @@
 		3E0489271C585108002CBBF7 /* WTBUiOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WTBUiOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E04892B1C585108002CBBF7 /* WTBUiOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTBUiOSUITests.swift; sourceTree = "<group>"; };
 		3E04892D1C585108002CBBF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3E95E2DA1C61217B00261A80 /* CoverArtLookup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoverArtLookup.swift; sourceTree = "<group>"; };
 		DCB6F0411C5853AA005177A7 /* RadioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioPlayer.swift; sourceTree = "<group>"; };
 		DCB6F0431C5853D6005177A7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		DCDE66211C5956C800592D95 /* VerticalScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalScrollViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				3E0489121C585108002CBBF7 /* Assets.xcassets */,
 				3E0489141C585108002CBBF7 /* LaunchScreen.storyboard */,
 				3E0489171C585108002CBBF7 /* Info.plist */,
+				3E95E2DA1C61217B00261A80 /* CoverArtLookup.swift */,
 			);
 			path = WTBUiOS;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E95E2DB1C61217B00261A80 /* CoverArtLookup.swift in Sources */,
 				DCDE66261C5963F000592D95 /* TopViewController.swift in Sources */,
 				DCB6F0421C5853AA005177A7 /* RadioPlayer.swift in Sources */,
 				DCDE66221C5956C800592D95 /* VerticalScrollViewController.swift in Sources */,
