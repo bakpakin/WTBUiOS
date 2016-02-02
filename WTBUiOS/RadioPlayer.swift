@@ -10,6 +10,7 @@ import Foundation
 import AVFoundation
 
 class RadioPlayer {
+    
     static let sharedInstance = RadioPlayer()
     private var player = AVPlayer(URL: NSURL(string: "http://wtbu.bu.edu:1800/listen.m3u")!)
     private var isPlaying = false

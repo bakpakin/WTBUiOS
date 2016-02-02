@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class PlayerViewController: UIViewController {
 
@@ -20,12 +21,27 @@ class PlayerViewController: UIViewController {
        
         self.view.frame = CGRectMake(0, CGRectGetHeight(self.view.bounds) - 50, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds) + 50)
     }
-
     
+    private func getSongData() {
+        
+        let artist = "Michael Jackson"
+        let song = "Thriller"
+        
+        Alamofire.request(.GET, "https://itunes.apple.com/search", parameters: ["term": "\(artist) \(song)"])
+            .responseJSON { response in
+                if let JSON = response.result.value {
+                    print("JSON: \(JSON)")
+                } else {
+                    print("Did not get JSON from itunes API for cover art.")
+                }
+        }
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         buttonPlay.setTitle("Play", forState: UIControlState.Normal)
+        getSongData()
     
     }
 
@@ -34,7 +50,7 @@ class PlayerViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     @IBAction func playButtonClicked(sender: AnyObject) {
-            toggle()
+            RadioPlayer.sharedInstance.toggle()
         }
     
     
@@ -42,14 +58,6 @@ class PlayerViewController: UIViewController {
     
             RadioPlayer.sharedInstance.volume(sliderVolume.value)
     
-        }
-    
-        func toggle() {
-            if RadioPlayer.sharedInstance.currentlyPlaying() {
-                pauseRadio()
-            } else {
-                playRadio()
-            }
         }
     
         func playRadio() {

@@ -85,11 +85,15 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/Alamofire.framework"
+  install_framework "Pods/Async.framework"
   install_framework "Pods/SWXMLHash.framework"
   install_framework "Pods/SwiftyJSON.framework"
+  install_framework "Pods/XCGLogger.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/Alamofire.framework"
+  install_framework "Pods/Async.framework"
   install_framework "Pods/SWXMLHash.framework"
   install_framework "Pods/SwiftyJSON.framework"
+  install_framework "Pods/XCGLogger.framework"
 fi
