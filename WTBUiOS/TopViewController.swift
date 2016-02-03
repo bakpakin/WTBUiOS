@@ -53,7 +53,7 @@ class TopViewController: UIViewController, UITableViewDataSource, UITableViewDel
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("scheduleCell")
         cell!.textLabel!.text = daysOfWeek[indexPath.row]
-        
+        cell?.backgroundColor = UIColor(red: 255, green: 0, blue: 0, alpha: 0.7)
         return cell!
     }
     /*
