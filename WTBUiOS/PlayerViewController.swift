@@ -37,16 +37,14 @@ class PlayerViewController: UIViewController {
                     
                     // Convert to SwiftyJSON
                     let json = JSON(jsonNative)
-                    let artworkURL : String = String(json["results"][0]["artworkUrl100"])
+                    let artworkURL : String = String(json["results"][0]["artworkUrl100"]).stringByReplacingOccurrencesOfString("/100x100", withString: "/1000x1000")
                     log.debug("Retrieved album artwork url for \"\(artist) : \(song)\" : \(artworkURL)")
-                    log.debug("\(self.imageCoverArt)")
-                    // Make another request
-                    Alamofire.request(Method.GET, artworkURL).responseImage { repsonse in
-                        if let image = response.result.value {
-                            print(image)
+                    
+                    if let url = NSURL(string: artworkURL) {
+                        if let data = NSData(contentsOfURL: url) {
+                            self.imageCoverArt.image = UIImage(data: data)
                         }
                     }
-                    
                 } else {
                     log.debug("Did not get JSON from itunes API for cover art.")
                 }
