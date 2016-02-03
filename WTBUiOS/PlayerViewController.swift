@@ -43,9 +43,7 @@ class PlayerViewController: UIViewController {
                     // Make another request
                     Alamofire.request(Method.GET, artworkURL).responseImage { repsonse in
                         if let image = response.result.value {
-                            let size = CGSize(width: 300.00, height: 300.0)
-                            //let aspectScaledToFillImage = image.af_imageScaledToSize(size)
-                            //self.imageCoverArt.image = aspectScaledToFillImage
+                            print(image)
                         }
                     }
                     
