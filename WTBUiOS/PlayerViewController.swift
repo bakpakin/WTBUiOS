@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import AlamofireImage
 import SwiftyJSON
+import SWXMLHash
 import XCGLogger
 
 class PlayerViewController: UIViewController {
@@ -25,11 +26,8 @@ class PlayerViewController: UIViewController {
         self.view.frame = CGRectMake(0, CGRectGetHeight(self.view.bounds) - 50, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds) + 50)
     }
     
-    private func getSongData() {
-        
-        // TODO Get the currently playing song on the station
-        let artist = "Michael Jackson"
-        let song = "Thriller"
+    // Downloads and displays the album art for a given song from the itunes API
+    private func getAlbumArt(artist: String, song: String) {
         
         Alamofire.request(.GET, "https://itunes.apple.com/search", parameters: ["term": "\(artist) \(song)", "limit": "1"])
             .responseJSON { response in
@@ -37,8 +35,7 @@ class PlayerViewController: UIViewController {
                     
                     // Convert to SwiftyJSON
                     let json = JSON(jsonNative)
-                    let artworkURL : String = String(json["results"][0]["artworkUrl100"]).stringByReplacingOccurrencesOfString("/100x100", withString: "/1000x1000")
-                    log.debug("Retrieved album artwork url for \"\(artist) : \(song)\" : \(artworkURL)")
+                    let artworkURL : String = String(json["results"][0]["artworkUrl100"]).stringByReplacingOccurrencesOfString("/100x100", withString: "/1024x1024")
                     
                     if let url = NSURL(string: artworkURL) {
                         if let data = NSData(contentsOfURL: url) {
@@ -47,6 +44,31 @@ class PlayerViewController: UIViewController {
                     }
                 } else {
                     log.debug("Did not get JSON from itunes API for cover art.")
+                }
+        }
+        
+    }
+    
+    // Gets the current schedule from Spinitron and current song.
+    private func getSongData() {
+        
+        Alamofire.request(.GET, "https://spinitron.com/radio/rss.php", parameters: ["station" : "wtbu"])
+            .responseString { response in
+                if let rssdata = response.result.value {
+                    let xml = SWXMLHash.parse(rssdata)
+                    var schedule = [[String:String]]()
+                    for item in xml["rss"]["channel"]["item"] {
+                        let dateString: String = (item["pubDate"].element?.text)!
+                        let itemMap = [
+                            "title": (item["title"].element?.text)!,
+                            "data": dateString
+                        ]
+                        schedule.append(itemMap)
+                    }
+                    let title = schedule[0]["title"]
+                    log.debug(title)
+                    let artistAndSongArray = title!.componentsSeparatedByString(": ")
+                    self.getAlbumArt(artistAndSongArray[0], song: artistAndSongArray[1])
                 }
         }
         
