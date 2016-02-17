@@ -15,6 +15,14 @@ class RadioPlayer {
     private var player = AVPlayer(URL: NSURL(string: "http://wtbu.bu.edu:1800/listen.m3u")!)
     private var isPlaying = false
     
+    init() {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+        } catch {
+            log.debug("Failed setting up AVAudioSession category.")
+        }
+    }
+    
     func play() {
         player.play()
         isPlaying = true
@@ -27,7 +35,6 @@ class RadioPlayer {
     
     func volume(value:Float){
         player.volume = value
-        
     }
     
     func toggle() {

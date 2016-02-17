@@ -1,0 +1,6 @@
+framework module ALAccordion {
+  umbrella header "ALAccordion-umbrella.h"
+
+  export *
+  module * { export * }
+}
