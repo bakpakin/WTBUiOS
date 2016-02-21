@@ -14,8 +14,12 @@ import XCGLogger
 
 class PlayerViewController: UIViewController {
 
-     @IBOutlet weak var buttonPlay: UIButton!
-     @IBOutlet weak var imageCoverArt: UIImageView!
+    @IBOutlet weak var songArtistLabel: UILabel!
+    @IBOutlet weak var songTitleLabel: UILabel!
+    @IBOutlet weak var buttonPlay: UIButton!
+    @IBOutlet weak var imageCoverArt: UIImageView!
+    
+    var timer: NSTimer = NSTimer()
     
     // Downloads and displays the album art for a given song from the itunes API
     private func getAlbumArt(artist: String, song: String) {
@@ -41,7 +45,7 @@ class PlayerViewController: UIViewController {
     }
     
     // Gets the current schedule from Spinitron and current song.
-    private func getSongData() {
+    func getSongData() {
         
         Alamofire.request(.GET, "https://spinitron.com/radio/rss.php", parameters: ["station" : "wtbu"])
             .responseString { response in
@@ -59,7 +63,13 @@ class PlayerViewController: UIViewController {
                     let title = schedule[0]["title"]
                     log.debug(title)
                     let artistAndSongArray = title!.componentsSeparatedByString(": ")
-                    self.getAlbumArt(artistAndSongArray[0], song: artistAndSongArray[1])
+                    
+                    let artist = artistAndSongArray[0]
+                    let song = artistAndSongArray[1].stringByReplacingOccurrencesOfString("'", withString: "")
+                    
+                    self.getAlbumArt(artist, song: song)
+                    self.songTitleLabel.text = song
+                    self.songArtistLabel.text = artist
                 }
         }
         
@@ -68,7 +78,8 @@ class PlayerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getSongData()
-       
+        timer = NSTimer.scheduledTimerWithTimeInterval(15.0, target: self, selector: "getSongData", userInfo: nil, repeats: true)
+        playRadio()
     }
 
     override func didReceiveMemoryWarning() {
