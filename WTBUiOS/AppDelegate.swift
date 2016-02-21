@@ -32,6 +32,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Set up XCGLogger
         log.setup(.Debug, showThreadName: true, showLogLevel: true, showFileNames: true, showLineNumbers: true)
         
+        // Make the tab bar red, and fix up the navigation bar
+        UITabBar.appearance().tintColor = UIColor.redColor()
+        UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        
         return true
     }
 
