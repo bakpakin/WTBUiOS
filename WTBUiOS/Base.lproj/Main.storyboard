@@ -123,5 +123,5 @@
     <resources>
         <image name="play.png" width="512" height="512"/>
     </resources>
-    <color key="tintColor" patternImage="D108FDAE-026B-46F8-A55F-D64F2FAF3305" colorSpace="pattern"/>
+    <color key="tintColor" patternImage="98A102DD-8D0A-4418-A7BD-94BD47485558" colorSpace="pattern"/>
 </document>
