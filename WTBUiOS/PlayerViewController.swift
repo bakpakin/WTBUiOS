@@ -12,7 +12,7 @@ import SwiftyJSON
 import SWXMLHash
 import XCGLogger
 
-class PlayerViewController: UIViewController {
+class PlayerViewController: AllViewController {
 
     @IBOutlet weak var songArtistLabel: UILabel!
     @IBOutlet weak var songTitleLabel: UILabel!

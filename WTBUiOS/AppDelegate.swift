@@ -20,6 +20,8 @@ import UIKit
 import XCGLogger
 import AVFoundation
 import AudioToolbox
+import Alamofire
+import SWXMLHash
 let log = XCGLogger.defaultInstance()
 
 @UIApplicationMain
@@ -36,6 +38,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBar.appearance().tintColor = UIColor.redColor()
         UINavigationBar.appearance().shadowImage = UIImage()
         UINavigationBar.appearance().setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        
+        // Select the middle tab as the first tab
+        let tabBarController = self.window?.rootViewController as! UITabBarController
+        tabBarController.selectedIndex = 1
         
         return true
     }

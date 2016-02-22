@@ -1,20 +1,20 @@
 PODS:
-  - ALAccordion (0.2.0)
   - Alamofire (3.1.5)
+  - Kanna (1.0.5)
   - SwiftyJSON (2.3.2)
   - SWXMLHash (2.1.0)
   - XCGLogger (3.2)
 
 DEPENDENCIES:
-  - ALAccordion
   - Alamofire (~> 3.0)
+  - Kanna (~> 1.0.0)
   - SwiftyJSON (~> 2.3)
   - SWXMLHash (~> 2.1.0)
   - XCGLogger (~> 3.2)
 
 SPEC CHECKSUMS:
-  ALAccordion: 90b275caa60bbf5e10c785ba167810416fc0209a
   Alamofire: 5f730ba29fd113b7ddd71c1e65d0c630acf5d7b0
+  Kanna: 1df5cd995dc1f3a282e3dcf7521cfef2f069ac4d
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   SWXMLHash: 7257a358b3ab2f7a209e0b4e4cf552e8b6df5f0f
   XCGLogger: da1f341f4bb8979db6e1df64232f04d9698402d4
