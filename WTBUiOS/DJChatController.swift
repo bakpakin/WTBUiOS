@@ -11,7 +11,7 @@ import Alamofire
 import UIKit
 import Parse 
 
-class DJChatController : AllViewController, UITableViewDelegate, UITableViewDataSource  {
+class DJChatController : AllViewController, UITableViewDelegate, UITableViewDataSource , UITextFieldDelegate {
     
     @IBOutlet weak var inputText: UITextField!
     @IBOutlet weak var tableView: UITableView!
@@ -29,10 +29,14 @@ class DJChatController : AllViewController, UITableViewDelegate, UITableViewData
         tableView.separatorStyle = .None
         tableView.tableFooterView = UIView()
         oldConst = constraint.constant
+        inputText.delegate = self
         
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+         view.addGestureRecognizer(tap)
+
        
     }
     
@@ -104,13 +108,17 @@ class DJChatController : AllViewController, UITableViewDelegate, UITableViewData
         inputText.resignFirstResponder()
         let newMessage = PFObject(className: "Messages")
         newMessage["Sender"] = "TempUser"
-        newMessage["Receiver "] = "DJ"
+        newMessage["Receiver"] = "DJ"
         newMessage["Users"] = ["DJ","TempUser"]
         newMessage["Text"]  = inputText.text
         newMessage.saveInBackgroundWithBlock { (success, error) -> Void in
             if(success)
             {   self.inputText.text = ""
                 self.getMessages()
+            }
+            else
+            {
+                print(error)
             }
         }
         
@@ -125,6 +133,17 @@ class DJChatController : AllViewController, UITableViewDelegate, UITableViewData
     {
          constraint.constant = oldConst
     }
+    func dismissKeyboard() {
+       constraint.constant = oldConst
+        inputText.resignFirstResponder()
+    }
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        constraint.constant = oldConst
+        inputText.resignFirstResponder()
+        
+        return true
+    }
+
 
     
 }
