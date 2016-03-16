@@ -22,6 +22,8 @@ import AVFoundation
 import AudioToolbox
 import Alamofire
 import SWXMLHash
+import Parse
+import Bolts
 let log = XCGLogger.defaultInstance()
 
 @UIApplicationMain
@@ -42,6 +44,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Select the middle tab as the first tab
         let tabBarController = self.window?.rootViewController as! UITabBarController
         tabBarController.selectedIndex = 1
+        
+        // Parse.
+        Parse.setApplicationId("1YQrSQX8ISBBkVdXA2tgSmv0j2cBOx878Es5d5lD",
+            clientKey: "zplY28RZTzs5SqiUog33vcDlCIqP7FaJcVS28daA")
+        
+
+        
+        //Parse FOR LATER 
+        /*
+        let configuration = ParseClientConfiguration {
+            $0.applicationId = "YOUR_APP_ID"
+            $0.server = "http://YOUR_PARSE_SERVER:1337/parse"
+        }
+        Parse.initializeWithConfiguration(configuration)
+        */
         
         return true
     }
