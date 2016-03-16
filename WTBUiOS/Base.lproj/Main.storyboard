@@ -184,12 +184,20 @@
                                 <color key="sectionIndexBackgroundColor" red="0.86274509803921573" green="0.24313725490196078" blue="0.24155809974996711" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexTrackingBackgroundColor" red="0.86274509799999999" green="0.24313725489999999" blue="0.24155809973624162" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="OYQ-Bq-X7h">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="scheduleitemcell" id="OYQ-Bq-X7h">
                                         <rect key="frame" x="0.0" y="28" width="500" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OYQ-Bq-X7h" id="52t-zT-1SW">
                                             <rect key="frame" x="0.0" y="0.0" width="500" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dd0-44-WKA">
+                                                    <rect key="frame" x="8" y="11" width="484" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
@@ -234,17 +242,17 @@
                         </subviews>
                         <color key="backgroundColor" red="0.86274509803921573" green="0.24313725490196078" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="7Mr-Nj-ZbF" firstAttribute="top" secondItem="4Kb-Vf-IIe" secondAttribute="bottom" constant="44" id="3qV-Ie-l8l"/>
                             <constraint firstItem="7Mr-Nj-ZbF" firstAttribute="leading" secondItem="gbO-Cc-a0n" secondAttribute="trailing" id="A5h-aP-h84"/>
                             <constraint firstAttribute="trailingMargin" secondItem="7Mr-Nj-ZbF" secondAttribute="trailing" id="FlB-cp-Za0"/>
-                            <constraint firstItem="eXr-Wo-SDx" firstAttribute="top" secondItem="4Kb-Vf-IIe" secondAttribute="bottom" id="J3y-6E-bR1"/>
+                            <constraint firstItem="cMe-Ae-Nz5" firstAttribute="top" secondItem="7Mr-Nj-ZbF" secondAttribute="bottom" constant="20" id="KsC-ND-RIb"/>
                             <constraint firstAttribute="leadingMargin" secondItem="gbO-Cc-a0n" secondAttribute="leading" id="NnN-6Z-6jT"/>
-                            <constraint firstItem="cMe-Ae-Nz5" firstAttribute="top" secondItem="gbO-Cc-a0n" secondAttribute="bottom" constant="20" id="QHr-VF-QSw"/>
+                            <constraint firstItem="gbO-Cc-a0n" firstAttribute="top" secondItem="4Kb-Vf-IIe" secondAttribute="bottom" constant="44" id="PRb-f4-uAR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="eXr-Wo-SDx" secondAttribute="trailing" constant="-20" id="aMP-oR-pAs"/>
                             <constraint firstAttribute="leadingMargin" secondItem="7Mr-Nj-ZbF" secondAttribute="leading" id="biR-OZ-nwh"/>
-                            <constraint firstItem="cMe-Ae-Nz5" firstAttribute="top" secondItem="7Mr-Nj-ZbF" secondAttribute="bottom" constant="20" id="tEK-7r-tDB"/>
+                            <constraint firstItem="eXr-Wo-SDx" firstAttribute="top" secondItem="4Kb-Vf-IIe" secondAttribute="bottom" id="eEk-xm-H76"/>
+                            <constraint firstItem="7Mr-Nj-ZbF" firstAttribute="top" secondItem="4Kb-Vf-IIe" secondAttribute="bottom" constant="44" id="nfb-ra-153"/>
                             <constraint firstItem="eXr-Wo-SDx" firstAttribute="leading" secondItem="lUL-q7-2AU" secondAttribute="leadingMargin" constant="-20" id="y5I-8d-MNu"/>
-                            <constraint firstItem="gbO-Cc-a0n" firstAttribute="top" secondItem="4Kb-Vf-IIe" secondAttribute="bottom" constant="44" id="yWe-8h-GcK"/>
+                            <constraint firstItem="cMe-Ae-Nz5" firstAttribute="top" secondItem="gbO-Cc-a0n" secondAttribute="bottom" constant="20" id="yHW-hw-VmI"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -257,7 +265,7 @@
                     </tabBarItem>
                     <connections>
                         <outlet property="daysOfWeekTable" destination="gbO-Cc-a0n" id="KHd-40-9gZ"/>
-                        <outlet property="scheduleTable" destination="7Mr-Nj-ZbF" id="piW-Ft-DJy"/>
+                        <outlet property="scheduleTable" destination="7Mr-Nj-ZbF" id="v82-LD-yKC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TzF-fJ-RLl" userLabel="First Responder" sceneMemberID="firstResponder"/>

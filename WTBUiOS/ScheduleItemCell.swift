@@ -1,21 +1,20 @@
 //
-//  DayOfWeekCell.swift
+//  ScheduleItemCell.swift
 //  WTBUiOS
 //
-//  Created by Calvin Rose on 2/21/16.
+//  Created by Calvin Rose on 3/15/16.
 //  Copyright © 2016 Calvin Rose. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class DayOfWeekCell : UITableViewCell {
+class ScheduleItemCell : UITableViewCell {
     
     // Add some custom stuff here.
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-    
+        
     }
- 
     
 }

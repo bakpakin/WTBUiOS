@@ -64,6 +64,8 @@ class ScheduleController : AllViewController, UITableViewDataSource, UITableView
         // Do any additional setup after loading the view.
         daysOfWeekTable.dataSource = self
         daysOfWeekTable.delegate = self
+        scheduleTable.dataSource = self
+        scheduleTable.delegate = self
         
         log.debug("\(self.daysOfWeekTable.bounds.height)")
         
@@ -71,7 +73,11 @@ class ScheduleController : AllViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return daysOfWeek.count
+        if (tableView == self.daysOfWeekTable) {
+            return daysOfWeek.count
+        } else {
+            return 10
+        }
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -79,9 +85,14 @@ class ScheduleController : AllViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("dayofweekcell")!
-        (cell.subviews.first!.subviews.first as! UILabel).text! = daysOfWeek[indexPath.row]
-        return cell
+        if (tableView == self.daysOfWeekTable) {
+            let cell = tableView.dequeueReusableCellWithIdentifier("dayofweekcell")!
+            (cell.subviews.first!.subviews.first as! UILabel).text! = daysOfWeek[indexPath.row]
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCellWithIdentifier("scheduleitemcell")!
+            return cell
+        }
     }
     
 }
