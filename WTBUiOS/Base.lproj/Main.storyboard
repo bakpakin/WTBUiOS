@@ -179,31 +179,44 @@
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7Mr-Nj-ZbF">
-                                <rect key="frame" x="80" y="64" width="500" height="467"/>
+                                <rect key="frame" x="70" y="64" width="520" height="467"/>
                                 <color key="backgroundColor" red="0.86274509799999999" green="0.24313725489999999" blue="0.24155809973624162" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.86274509803921573" green="0.24313725490196078" blue="0.24155809974996711" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexTrackingBackgroundColor" red="0.86274509799999999" green="0.24313725489999999" blue="0.24155809973624162" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="scheduleitemcell" id="OYQ-Bq-X7h">
-                                        <rect key="frame" x="0.0" y="28" width="500" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="520" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OYQ-Bq-X7h" id="52t-zT-1SW">
-                                            <rect key="frame" x="0.0" y="0.0" width="500" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="520" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dd0-44-WKA">
-                                                    <rect key="frame" x="8" y="11" width="484" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dd0-44-WKA">
+                                                    <rect key="frame" x="8" y="8" width="484" height="28"/>
+                                                    <color key="backgroundColor" red="0.86274509799999999" green="0.24161073829999999" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="tintColor" red="0.86274509799999999" green="0.24161073829999999" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <color key="backgroundColor" red="0.86274509799999999" green="0.24161073829999999" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Dd0-44-WKA" secondAttribute="trailing" id="Rce-2D-LBH"/>
+                                                <constraint firstItem="Dd0-44-WKA" firstAttribute="top" secondItem="52t-zT-1SW" secondAttribute="topMargin" id="bpo-No-Tac"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Dd0-44-WKA" secondAttribute="bottom" id="g2O-aG-bwz"/>
+                                                <constraint firstItem="Dd0-44-WKA" firstAttribute="leading" secondItem="52t-zT-1SW" secondAttribute="leadingMargin" id="pgm-ZF-0DM"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="brn-5G-Bi9" id="xBp-mN-PUg"/>
+                                    <outlet property="delegate" destination="brn-5G-Bi9" id="U3b-qW-ti6"/>
+                                </connections>
                             </tableView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gbO-Cc-a0n">
-                                <rect key="frame" x="20" y="64" width="60" height="467"/>
+                                <rect key="frame" x="10" y="64" width="60" height="467"/>
                                 <color key="backgroundColor" red="0.86274509803921573" green="0.24161073825503357" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="4bE-vY-g6b"/>
@@ -238,14 +251,18 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>
+                                <connections>
+                                    <outlet property="dataSource" destination="brn-5G-Bi9" id="LL0-dN-15G"/>
+                                    <outlet property="delegate" destination="brn-5G-Bi9" id="5cC-zG-ped"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.86274509803921573" green="0.24313725490196078" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="7Mr-Nj-ZbF" firstAttribute="leading" secondItem="gbO-Cc-a0n" secondAttribute="trailing" id="A5h-aP-h84"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="7Mr-Nj-ZbF" secondAttribute="trailing" id="FlB-cp-Za0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="7Mr-Nj-ZbF" secondAttribute="trailing" constant="-10" id="FlB-cp-Za0"/>
                             <constraint firstItem="cMe-Ae-Nz5" firstAttribute="top" secondItem="7Mr-Nj-ZbF" secondAttribute="bottom" constant="20" id="KsC-ND-RIb"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="gbO-Cc-a0n" secondAttribute="leading" id="NnN-6Z-6jT"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="gbO-Cc-a0n" secondAttribute="leading" constant="10" id="NnN-6Z-6jT"/>
                             <constraint firstItem="gbO-Cc-a0n" firstAttribute="top" secondItem="4Kb-Vf-IIe" secondAttribute="bottom" constant="44" id="PRb-f4-uAR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="eXr-Wo-SDx" secondAttribute="trailing" constant="-20" id="aMP-oR-pAs"/>
                             <constraint firstAttribute="leadingMargin" secondItem="7Mr-Nj-ZbF" secondAttribute="leading" id="biR-OZ-nwh"/>
