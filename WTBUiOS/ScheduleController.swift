@@ -7,9 +7,9 @@
 //
 
 import Foundation
-import Alamofire
 import UIKit
-import Kanna
+
+var globalSchedule: [[String]]?
 
 class ScheduleController : AllViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -21,62 +21,33 @@ class ScheduleController : AllViewController, UITableViewDataSource, UITableView
     var schedule : [[String]]?
     var selectedDay : Int = 0
     
-    // Gets the current weeks schedule from the WTBU website.
-    func getSchedule() {
-        
-        Alamofire.request(.GET, "http://www.wtburadio.org/programming/")
-            .responseString{ response in
-                if let source = response.result.value {
-                    if let doc = Kanna.HTML(html: source, encoding: NSUTF8StringEncoding) {
-                        for item in doc.css("table.table-pro") {
-                            var s: [[String]] = [[String]]()
-                            if let text = item.text {
-                                let blocks = text.componentsSeparatedByString("\n\n\n")
-                                for block in blocks { // For each day of the week
-                                    var items = [String]()
-                                    let splitstring = block.componentsSeparatedByString("\n")
-                                    items.appendContentsOf(splitstring)
-                                    items.removeFirst()
-                                    if items.count > 0 {
-                                        s.append(items)
-                                    }
-                                }
-                                s.removeFirst()
-                                self.schedule = s
-                                break
-                            }
-                        }
-                        self.scheduleTable.reloadData()
-                        log.debug("Finished parsing schedule website html.")
-                    } else {
-                        log.debug("Unable to parse schedule site HTML.")
-                    }
-                } else {
-                    log.debug("Source not found.")
-                }
-        }
-        
-    }
-    
     // Get the current day of the week
     func getDayOfWeek()->Int {
         let myCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
-        let components = myCalendar!.components(.WeekdayOrdinal, fromDate: NSDate())
-        return components.weekdayOrdinal - 1
+        let components = myCalendar!.components(.Weekday, fromDate: NSDate())
+        return components.weekday - 1
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getSchedule()
+        if let _ = dataSchedule {
+            
+        } else {
+            dataGetSchedule({ data in
+                self.schedule = data
+                self.scheduleTable.reloadData()
+                })
+        }
 
         selectedDay = getDayOfWeek()
         let path: NSIndexPath = NSIndexPath(forRow: selectedDay, inSection: 0)
         self.daysOfWeekTable.selectRowAtIndexPath(path, animated: false, scrollPosition: .None)
         self.tableView(self.daysOfWeekTable, didSelectRowAtIndexPath: path)
         
-        log.debug("\(self.daysOfWeekTable.bounds.height)")
-        
-        self.daysOfWeekTable.rowHeight = (self.daysOfWeekTable.bounds.height + 68) / CGFloat(daysOfWeek.count)
+        self.daysOfWeekTable.estimatedRowHeight = self.daysOfWeekTable.bounds.height / 7
+        self.daysOfWeekTable.rowHeight = UITableViewAutomaticDimension
+        self.scheduleTable.estimatedRowHeight = self.scheduleTable.bounds.height / 10
+        self.scheduleTable.rowHeight = UITableViewAutomaticDimension
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -93,7 +64,6 @@ class ScheduleController : AllViewController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if tableView == self.daysOfWeekTable {
-            log.debug("Selected \(indexPath.row)")
             selectedDay = indexPath.row
             self.scheduleTable.reloadData()
         }
@@ -106,10 +76,23 @@ class ScheduleController : AllViewController, UITableViewDataSource, UITableView
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("scheduleitemcell")!
+            let hour1 = ((2 * indexPath.row + 5) % 12) + 1
+            let hour2 = ((2 * indexPath.row + 7) % 12) + 1
+            let timestring = "\(hour1)-\(hour2):"
             if let s = schedule {
-                (cell.subviews.first!.subviews.first as! UILabel).text! = s[indexPath.row][self.selectedDay]
+                (cell.subviews.first!.subviews.first as! UILabel).text! = "\(timestring) \(s[indexPath.row][self.selectedDay])"
+            } else {
+                (cell.subviews.first!.subviews.first as! UILabel).text! = timestring
             }
             return cell
+        }
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if tableView == self.daysOfWeekTable {
+            return tableView.bounds.height / 7
+        } else {
+            return tableView.bounds.height / 10
         }
     }
     
