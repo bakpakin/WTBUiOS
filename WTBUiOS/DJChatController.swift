@@ -15,9 +15,7 @@ class DJChatController : AllViewController, UITableViewDelegate, UITableViewData
     
     @IBOutlet weak var inputText: UITextField!
     @IBOutlet weak var tableView: UITableView!
-    
-    @IBOutlet weak var sendButton: UIButton!
-    @IBOutlet weak var constraint: NSLayoutConstraint!
+    @IBOutlet weak var textFieldConstraint: NSLayoutConstraint!
     
     var MessageInfo = [Message]()
     var oldConst:CGFloat = 0.0
@@ -28,9 +26,8 @@ class DJChatController : AllViewController, UITableViewDelegate, UITableViewData
         tableView.dataSource = self
         tableView.separatorStyle = .None
         tableView.tableFooterView = UIView()
-        oldConst = constraint.constant
         inputText.delegate = self
-        
+        oldConst = textFieldConstraint.constant
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
@@ -97,14 +94,28 @@ class DJChatController : AllViewController, UITableViewDelegate, UITableViewData
         return myCell
     }
     
+    func keyboardWillShow(notification:NSNotification)
+    {
+        textFieldConstraint.constant =  (self.view.center.y) * 0.65
+    }
     
+    func keyboardWillHide(notification:NSNotification)
+    {
+         textFieldConstraint.constant = oldConst
+    }
     
-    @IBAction func sendClicked(sender: AnyObject) {
+    func dismissKeyboard() {
+       textFieldConstraint.constant = oldConst
+        inputText.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textFieldConstraint.constant = oldConst
+        inputText.resignFirstResponder()
         if(inputText.text?.characters.count == 0)
         {
-            return
+            return true
         }
-        constraint.constant = oldConst
         inputText.resignFirstResponder()
         let newMessage = PFObject(className: "Messages")
         newMessage["Sender"] = "TempUser"
@@ -121,29 +132,7 @@ class DJChatController : AllViewController, UITableViewDelegate, UITableViewData
                 print(error)
             }
         }
-        
-    }
-    
-    func keyboardWillShow(notification:NSNotification)
-    {
-        constraint.constant =  (self.view.center.y) * 0.65
-    }
-    
-    func keyboardWillHide(notification:NSNotification)
-    {
-         constraint.constant = oldConst
-    }
-    func dismissKeyboard() {
-       constraint.constant = oldConst
-        inputText.resignFirstResponder()
-    }
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        constraint.constant = oldConst
-        inputText.resignFirstResponder()
-        
         return true
     }
-
-
     
 }
