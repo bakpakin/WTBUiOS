@@ -54,6 +54,7 @@ func dataGetSchedule(callback: ([[String]]?)->Void) {
                         dataShowList!.append(item)
                     }
                     log.debug("\(dataShowList!.count)")
+                    dataShowList = dataShowList!.sort()
                     callback(dataSchedule)
                 } else {
                     log.debug("Unable to parse schedule site HTML.")
@@ -78,9 +79,11 @@ func dataGetAlbumArt(artist: String, song: String, callback: (UIImage?)->Void) {
                     }
                 } else {
                     log.debug("Did not get coverart from itunes API.")
+                    callback(UIImage(named: "Cover"))
                 }
             } else {
                 log.debug("Did not get JSON from itunes API for cover art.")
+                callback(UIImage(named: "Cover"))
             }
     }
     
@@ -91,7 +94,9 @@ func dataGetSongData(callback: (String, String)->Void) {
     Alamofire.request(.GET, "https://spinitron.com/radio/rss.php", parameters: ["station" : "wtbu"])
         .responseString { response in
             if let rssdata = response.result.value {
-                let xml = SWXMLHash.parse(rssdata)
+                let encodeddata = rssdata.dataUsingEncoding(NSISOLatin1StringEncoding)!
+                let utf8data = String(data: encodeddata, encoding: NSUTF8StringEncoding)!
+                let xml = SWXMLHash.parse(utf8data)
                 var schedule = [[String:String]]()
                 for item in xml["rss"]["channel"]["item"] {
                     let dateString: String = (item["pubDate"].element?.text)!
@@ -102,9 +107,8 @@ func dataGetSongData(callback: (String, String)->Void) {
                     schedule.append(itemMap)
                 }
                 let title = schedule[0]["title"]
-                log.debug(title)
                 let artistAndSongArray = title!.componentsSeparatedByString(": ")
-                
+                print(schedule)
                 let artist = artistAndSongArray[0]
                 let song = artistAndSongArray[1].stringByReplacingOccurrencesOfString("'", withString: "")
                 

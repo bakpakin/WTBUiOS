@@ -241,7 +241,7 @@
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </textAttributes>
                                 <items>
-                                    <navigationItem title="Favorites" id="JtE-NK-TfF"/>
+                                    <navigationItem title="Favorite Shows" id="JtE-NK-TfF"/>
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="G9L-ka-lhP">
@@ -479,7 +479,6 @@
                     <connections>
                         <segue destination="brn-5G-Bi9" kind="relationship" relationship="viewControllers" id="bFV-6z-9NX"/>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="37k-SB-4tO"/>
-                        <segue destination="eEH-Xv-GsS" kind="relationship" relationship="viewControllers" id="6FC-KR-Fgz"/>
                         <segue destination="uqR-KA-H52" kind="relationship" relationship="viewControllers" id="NYL-Vg-CLM"/>
                     </connections>
                 </tabBarController>

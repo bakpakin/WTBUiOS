@@ -30,15 +30,11 @@ class ScheduleController : AllViewController, UITableViewDataSource, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let _ = dataSchedule {
-            
-        } else {
-            dataGetSchedule({ data in
-                self.schedule = data
-                self.scheduleTable.reloadData()
-                })
-        }
-
+        dataGetSchedule({ data in
+            self.schedule = data
+            self.scheduleTable.reloadData()
+        })
+        
         selectedDay = getDayOfWeek()
         let path: NSIndexPath = NSIndexPath(forRow: selectedDay, inSection: 0)
         self.daysOfWeekTable.selectRowAtIndexPath(path, animated: false, scrollPosition: .None)

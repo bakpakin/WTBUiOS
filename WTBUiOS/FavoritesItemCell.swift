@@ -12,6 +12,8 @@ import UIKit
 class FavoritesItemCell : UITableViewCell {
     
     weak var textlabel: UILabel?
+    weak var favoriteSwitch: UISwitch?
+    var switchIndex: Int = 0
     
     // Add some custom stuff here.
     required init?(coder aDecoder: NSCoder) {
@@ -19,9 +21,15 @@ class FavoritesItemCell : UITableViewCell {
         for subview in self.subviews.first!.subviews {
             if subview is UILabel {
                 textlabel = subview as? UILabel
-                break
+            } else if subview is UISwitch {
+                favoriteSwitch = subview as? UISwitch
+                favoriteSwitch!.setOn(false, animated: false)
             }
         }
+    }
+    
+    func switchToggled() {
+        log.debug("\(self.switchIndex) toggled.")
     }
     
 }

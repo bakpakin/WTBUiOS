@@ -33,6 +33,8 @@ class FavoritesViewController : AllViewController, UITableViewDataSource, UITabl
         if let showList = dataShowList {
             let showName = showList[indexPath.row]
             cell.textlabel!.text = showName
+            cell.favoriteSwitch!.addTarget(cell, action: "switchToggled", forControlEvents: .TouchUpInside)
+            cell.switchIndex = indexPath.row
         }
         return cell
     }

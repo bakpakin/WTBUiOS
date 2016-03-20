@@ -24,6 +24,7 @@
 		3EAA498F1C7AA266004C5ACC /* DayOfWeekCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAA498E1C7AA266004C5ACC /* DayOfWeekCell.swift */; };
 		3EBD4C071C98E8AC00E9361E /* ScheduleItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD4C061C98E8AC00E9361E /* ScheduleItemCell.swift */; };
 		3EC36E871C9DF28300480887 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC36E861C9DF28300480887 /* Data.swift */; };
+		3EC36E891C9E258100480887 /* FavoritesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC36E881C9E258100480887 /* FavoritesData.swift */; };
 		AE0A7A3E9353B326BC675027 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C181A0251FA6B1C03EF0F29 /* Pods.framework */; };
 		DCB6F0421C5853AA005177A7 /* RadioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB6F0411C5853AA005177A7 /* RadioPlayer.swift */; };
 		DCB6F0441C5853D6005177A7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCB6F0431C5853D6005177A7 /* AVFoundation.framework */; };
@@ -85,6 +86,7 @@
 		3EAA498E1C7AA266004C5ACC /* DayOfWeekCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayOfWeekCell.swift; sourceTree = "<group>"; };
 		3EBD4C061C98E8AC00E9361E /* ScheduleItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleItemCell.swift; sourceTree = "<group>"; };
 		3EC36E861C9DF28300480887 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		3EC36E881C9E258100480887 /* FavoritesData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesData.swift; sourceTree = "<group>"; };
 		CFA82A567F6259E0743A9EFC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		DCB6F0411C5853AA005177A7 /* RadioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioPlayer.swift; sourceTree = "<group>"; };
 		DCB6F0431C5853D6005177A7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -254,6 +256,7 @@
 				DCB6F0411C5853AA005177A7 /* RadioPlayer.swift */,
 				3E04890B1C585108002CBBF7 /* AppDelegate.swift */,
 				3EC36E861C9DF28300480887 /* Data.swift */,
+				3EC36E881C9E258100480887 /* FavoritesData.swift */,
 			);
 			name = MiscSwift;
 			sourceTree = "<group>";
@@ -487,6 +490,7 @@
 				3EC36E871C9DF28300480887 /* Data.swift in Sources */,
 				3EAA498F1C7AA266004C5ACC /* DayOfWeekCell.swift in Sources */,
 				3E2FB6951C7422E500448F23 /* SongOptionsView.swift in Sources */,
+				3EC36E891C9E258100480887 /* FavoritesData.swift in Sources */,
 				DCBFECCE1C98D73200F28095 /* Message.swift in Sources */,
 				DCDE66241C595E0400592D95 /* PlayerViewController.swift in Sources */,
 				3EA25C901C9DD44C0041A4E4 /* FavoritesViewController.swift in Sources */,
