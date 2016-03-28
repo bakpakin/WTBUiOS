@@ -56,7 +56,8 @@ class DJChatController : AllViewController, UITableViewDelegate, UITableViewData
                      self.MessageInfo.append(Message(BY: object.objectForKey("Sender") as! String, TEXT: object.objectForKey("Text") as! String))
                    }
                 }
-                self.tableView.setContentOffset(CGPointMake(0, 100000000), animated: false)
+                let offset: CGFloat =  CGFloat(self.MessageInfo.count * 40 )
+                self.tableView.setContentOffset(CGPointMake(0,  offset), animated: false)
                 self.tableView.reloadData()
             }
         }

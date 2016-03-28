@@ -19,16 +19,26 @@ class PlayerViewController: AllViewController {
     @IBOutlet weak var buttonPlay: UIButton!
     @IBOutlet weak var imageCoverArt: UIImageView!
     
+    var showName = ""
     var timer: NSTimer = NSTimer()
     
     func getSongData() {
         dataGetSongData({(artist, song) in
             self.songArtistLabel.text! = artist
             self.songTitleLabel.text! = song
+            //SHOW NAME NEEDS TO BE ADDED FROM RSS FEED
+            self.showName = song
             dataGetAlbumArt(artist, song: song, callback: { image in
                 self.imageCoverArt.image = image
             })
         })
+    }
+    
+    func getCurrentShow() -> String
+    {
+        getSongData()
+       // return showName
+        return "Cat Therapy"
     }
     
     override func viewDidLoad() {

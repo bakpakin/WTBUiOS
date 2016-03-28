@@ -29,7 +29,29 @@ class FavoritesItemCell : UITableViewCell {
     }
     
     func switchToggled() {
-        log.debug("\(self.switchIndex) toggled.")
-    }
+        let defaults = NSUserDefaults.standardUserDefaults()
+        var favShowsSet = [String]()
+        if(defaults.objectForKey("favoriteShows") != nil)
+        {
+            favShowsSet = defaults.objectForKey("favoriteShows") as! [String]
+
+        }
+        if(favoriteSwitch!.on)
+        {
+            favShowsSet.append((textlabel?.text)!)
+            print("ADD")
+            print(favShowsSet)
+        }
+        else
+        {
+            let index = favShowsSet.indexOf((textlabel?.text)!)
+            if(index != nil)
+            {
+                favShowsSet.removeAtIndex(index!)
+            }
+        }
+        defaults.setObject(favShowsSet, forKey: "favoriteShows")
+        defaults.synchronize()
     
+    }
 }

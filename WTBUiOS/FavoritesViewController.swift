@@ -12,7 +12,8 @@ import UIKit
 class FavoritesViewController : AllViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var favoritesTable: UITableView!
-    
+    var favShowsSet = [String]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         if let _ = dataSchedule {
@@ -24,6 +25,16 @@ class FavoritesViewController : AllViewController, UITableViewDataSource, UITabl
         }
     }
     
+    override func viewWillAppear(animated: Bool) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if(defaults.objectForKey("favoriteShows") != nil)
+        {
+            favShowsSet = defaults.objectForKey("favoriteShows") as! [String]
+            
+        }
+        favoritesTable.reloadData()
+    }
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -32,6 +43,15 @@ class FavoritesViewController : AllViewController, UITableViewDataSource, UITabl
         let cell = tableView.dequeueReusableCellWithIdentifier("scheduleitemcell") as! FavoritesItemCell
         if let showList = dataShowList {
             let showName = showList[indexPath.row]
+            if(favShowsSet.contains(showName))
+            {
+                print(showName)
+                cell.favoriteSwitch!.setOn(true, animated: false)
+            }
+            else
+            {
+                cell.favoriteSwitch!.setOn(false, animated: false)
+            }
             cell.textlabel!.text = showName
             cell.favoriteSwitch!.addTarget(cell, action: "switchToggled", forControlEvents: .TouchUpInside)
             cell.switchIndex = indexPath.row

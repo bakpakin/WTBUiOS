@@ -33,6 +33,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        //set  up background fetch 
+        UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(
+            UIApplicationBackgroundFetchIntervalMinimum)
+        
         // Set up XCGLogger
         log.setup(.Debug, showThreadName: true, showLogLevel: true, showFileNames: true, showLineNumbers: true)
         
@@ -84,6 +88,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
         
+    }
+    
+    func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+        
+        if let tabBarController = window?.rootViewController as? UITabBarController,
+            viewControllers = tabBarController.viewControllers{
+                for viewController in viewControllers {
+                    if let PlayerViewController = viewController as? PlayerViewController   {
+                        if(NSUserDefaults.standardUserDefaults().objectForKey("favoriteShows") != nil)
+                        {
+                            let favShows = NSUserDefaults.standardUserDefaults().objectForKey("favoriteShows") as! [String]
+                            if favShows.contains(PlayerViewController.getCurrentShow())
+                            {
+                                let notification = UILocalNotification()
+                                notification.fireDate = NSDate(timeIntervalSinceNow: 3)
+                                notification.alertBody = "One of your favorite shows is on air!"
+                                notification.soundName = UILocalNotificationDefaultSoundName
+                                UIApplication.sharedApplication().scheduleLocalNotification(notification)
+                            }
+                        }
+                        
+                    }
+                }
+        }
     }
 
 
