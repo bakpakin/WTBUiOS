@@ -1,0 +1,6 @@
+framework module SingleLineKeyboardResize {
+  umbrella header "SingleLineKeyboardResize-umbrella.h"
+
+  export *
+  module * { export * }
+}

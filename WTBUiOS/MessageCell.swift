@@ -10,9 +10,6 @@ import UIKit
 
 class MessageCell: UITableViewCell {
 
-    
-    @IBOutlet weak var djText: UILabel!
-    @IBOutlet weak var myText: UILabel!
-    
-    
+    @IBOutlet weak var messageLabel: UILabel!
+
 }

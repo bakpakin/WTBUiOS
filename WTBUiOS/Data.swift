@@ -18,6 +18,12 @@ var dataShowList: [String]?
 
 func dataGetSchedule(callback: ([[String]]?)->Void) {
     
+//    Alamofire.request(.GET, "https://gaiwtbubackend.herokuapp.com/regularShowsInfo").responseJSON {
+//        response in
+//        let json = JSON(response.result.value!)
+//        log.debug(json.debugDescription)
+//    }
+    
     Alamofire.request(.GET, "http://www.wtburadio.org/programming/")
         .responseString{ response in
             if let source = response.result.value {
@@ -108,7 +114,6 @@ func dataGetSongData(callback: (String, String)->Void) {
                 }
                 let title = schedule[0]["title"]
                 let artistAndSongArray = title!.componentsSeparatedByString(": ")
-                print(schedule)
                 let artist = artistAndSongArray[0]
                 let song = artistAndSongArray[1].stringByReplacingOccurrencesOfString("'", withString: "")
                 

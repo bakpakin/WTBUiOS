@@ -38,7 +38,7 @@ class PlayerViewController: AllViewController {
         imageCoverArt.layer.borderColor = CGColorCreate(CGColorSpaceCreateDeviceRGB(), [1.0, 1.0, 1.0, 1.0])
         imageCoverArt.layer.borderWidth = 5
         getSongData()
-        timer = NSTimer.scheduledTimerWithTimeInterval(15.0, target: self, selector: "getSongData", userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(15.0, target: self, selector: #selector(PlayerViewController.getSongData), userInfo: nil, repeats: true)
         playRadio()
     }
 

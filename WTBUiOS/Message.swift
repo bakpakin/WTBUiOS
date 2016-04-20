@@ -15,9 +15,8 @@ class Message {
     
     init(BY : String, TEXT : String)
     {
-       self.by = BY
+        self.by = BY
         self.text = TEXT
-    
     }
     
     func getBy() -> String

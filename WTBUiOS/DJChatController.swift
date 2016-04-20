@@ -7,132 +7,162 @@
 //
 
 import Foundation
-import Alamofire
 import UIKit
-import Parse 
 
-class DJChatController : AllViewController, UITableViewDelegate, UITableViewDataSource , UITextFieldDelegate {
+import Alamofire
+import SwiftyJSON
+import Alamofire
+
+class DJChatController : AllViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var inputText: UITextField!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var textFieldConstraint: NSLayoutConstraint!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var messageView: UITableView!
     
-    var MessageInfo = [Message]()
-    var oldConst:CGFloat = 0.0
+    var token: String?
+    var timer: NSTimer = NSTimer()
+    
+    var messages = [Message]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.separatorStyle = .None
-        tableView.tableFooterView = UIView()
-        inputText.delegate = self
-        oldConst = textFieldConstraint.constant
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
-         view.addGestureRecognizer(tap)
-
-       
+        // Add padding
+        let paddingView = UIView(frame: CGRectMake(0, 0, 15, inputText.frame.height))
+        inputText.leftView = paddingView
+        inputText.leftViewMode = UITextFieldViewMode.Always
+        
+        // Register notifications for observer
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: self.view.window)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: self.view.window)
+        
+        getMessages()
+        timer = NSTimer.scheduledTimerWithTimeInterval(20.0, target: self, selector: #selector(DJChatController.getMessages), userInfo: nil, repeats: true)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: self.view.window)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: self.view.window)
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        let userInfo: [NSObject : AnyObject] = notification.userInfo!
+        let keyboardSize: CGSize = userInfo[UIKeyboardFrameBeginUserInfoKey]!.CGRectValue.size
+        bottomConstraint.constant = keyboardSize.height - self.tabBarController!.tabBar.frame.height - 1
+        
+        UIView.animateWithDuration(0.3) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        bottomConstraint.constant = 0
+        UIView.animateWithDuration(0.3) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func sendMessage(message: String) {
+        let parameters = [
+            "token": self.token!,
+            "message": message
+        ]
+        Alamofire.request(.GET, "https://gaiwtbubackend.herokuapp.com/sendChatMessage", parameters: parameters).responseJSON {
+            response in
+            if let jsonNative = response.result.value {
+                let json = JSON(jsonNative)
+                if let status = json["status"].string {
+                    if status == "success" {
+                        log.debug("Successful message send")
+                    } else {
+                        log.debug("Successful message send")
+                    }
+                }
+                self.getMessages()
+            }
+        }
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        if let text = textField.text {
+            if text.characters.count > 0 {
+                if (self.token != nil) {
+                    sendMessage(text)
+                } else {
+                    getTokenAndSendMessage(text)
+                }
+            }
+            textField.text = ""
+        }
+        return true
     }
     
     override func viewDidAppear(animated: Bool) {
         getMessages()
     }
-    func getMessages()
-    {
-        MessageInfo.removeAll(keepCapacity: true)
-        let query = PFQuery(className: "Messages")
-        query.whereKey("Users", equalTo: "TempUser")
-        query.orderByAscending("createdAt")
-        query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
-            if(error == nil)
-            {
-                if let objects = objects
-                {
-                   for object in objects
-                   {
-                     self.MessageInfo.append(Message(BY: object.objectForKey("Sender") as! String, TEXT: object.objectForKey("Text") as! String))
-                   }
+    
+    func getTokenAndSendMessage(message: String) {
+        // TODO Add Username
+        let parameters = [
+            "name": "User"
+        ]
+        Alamofire.request(.GET, "https://gaiwtbubackend.herokuapp.com/chatSession", parameters: parameters).responseJSON {
+            response in
+            if let jsonNative = response.result.value {
+                let json = JSON(jsonNative)
+                if let token = json["token"].string {
+                    self.token = token
+                    self.sendMessage(message)
+                } else {
+                    log.debug("Could not get token.")
                 }
-                self.tableView.setContentOffset(CGPointMake(0, 100000000), animated: false)
-                self.tableView.reloadData()
             }
         }
+    }
+    
+    func getMessages() {
+        Alamofire.request(.GET, "https://gaiwtbubackend.herokuapp.com/getMessages").responseJSON {
+            response in
+            if let jsonNative = response.result.value {
+                let json = JSON(jsonNative)
+                if let messages = json.array {
+                    self.messages.removeAll(keepCapacity: true)
+                    for messageJson in messages {
+                        if let sender = messageJson["sender"].string {
+                            if let body = messageJson["message"].string {
+                                self.messages.append(Message(BY: sender, TEXT: body))
+                            }
+                        }
+                    }
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.messageView.reloadData()
+                    })
+                }
+            } else {
+                log.debug("Response not received.")
+            }
+        }
+    }
+    
+    // Table View Delegate and Datasource methods
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return messages.count
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return MessageInfo.count
-    }
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     
-   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        let myCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath:
-            indexPath) as! MessageCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("chatcell") as! MessageCell!
+        let message = messages[indexPath.row]
+        let text = "\(message.by): \(message.text)"
+        cell!.messageLabel.text = text
+        cell!.selectionStyle = UITableViewCellSelectionStyle.None
+        return cell!
     
-        myCell.selectionStyle = .None
-    
-        if(MessageInfo[indexPath.row].getBy() == "TempUser")
-        {
-                myCell.djText.alpha = 0.0
-                myCell.myText.alpha = 1.0
-                myCell.myText.text = MessageInfo[indexPath.row].getText()
-        }
-        else
-        {
-            myCell.myText.alpha = 0.0
-            myCell.djText.alpha = 1.0
-            myCell.djText.text = MessageInfo[indexPath.row].getText()
-
-        }
-    
-        return myCell
-    }
-    
-    func keyboardWillShow(notification:NSNotification)
-    {
-        textFieldConstraint.constant =  (self.view.center.y) * 0.65
-    }
-    
-    func keyboardWillHide(notification:NSNotification)
-    {
-         textFieldConstraint.constant = oldConst
-    }
-    
-    func dismissKeyboard() {
-       textFieldConstraint.constant = oldConst
-        inputText.resignFirstResponder()
-    }
-    
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textFieldConstraint.constant = oldConst
-        inputText.resignFirstResponder()
-        if(inputText.text?.characters.count == 0)
-        {
-            return true
-        }
-        inputText.resignFirstResponder()
-        let newMessage = PFObject(className: "Messages")
-        newMessage["Sender"] = "TempUser"
-        newMessage["Receiver"] = "DJ"
-        newMessage["Users"] = ["DJ","TempUser"]
-        newMessage["Text"]  = inputText.text
-        newMessage.saveInBackgroundWithBlock { (success, error) -> Void in
-            if(success)
-            {   self.inputText.text = ""
-                self.getMessages()
-            }
-            else
-            {
-                print(error)
-            }
-        }
-        return true
     }
     
 }

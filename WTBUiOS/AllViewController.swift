@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-// Parent class for all custom view controllers
+// Parent class for all custom view controllers. All it does right now is make the battery bar the right color.
 
 class AllViewController : UIViewController {
 
