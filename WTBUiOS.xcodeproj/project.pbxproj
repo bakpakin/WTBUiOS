@@ -16,11 +16,8 @@
 		3E2FB6951C7422E500448F23 /* SongOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2FB6941C7422E500448F23 /* SongOptionsView.swift */; };
 		3E2FB69D1C74F58E00448F23 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E2FB69B1C74F58E00448F23 /* play.png */; };
 		3E2FB69E1C74F58E00448F23 /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E2FB69C1C74F58E00448F23 /* pause.png */; };
-		3EA25C901C9DD44C0041A4E4 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA25C8F1C9DD44C0041A4E4 /* FavoritesViewController.swift */; };
-		3EA25C941C9DD8280041A4E4 /* FavoritesItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA25C931C9DD8280041A4E4 /* FavoritesItemCell.swift */; };
 		3EA8760B1CC47E24005685E8 /* Show.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA8760A1CC47E24005685E8 /* Show.swift */; };
 		3EA8760D1CC47E2E005685E8 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA8760C1CC47E2E005685E8 /* Song.swift */; };
-		3EA876111CC47ED9005685E8 /* WeeklyTimePeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA876101CC47ED9005685E8 /* WeeklyTimePeriod.swift */; };
 		3EA876131CC47EFE005685E8 /* TimePeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA876121CC47EFE005685E8 /* TimePeriod.swift */; };
 		3EA876151CC47F6D005685E8 /* DJ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA876141CC47F6D005685E8 /* DJ.swift */; };
 		3EA876171CC47FB5005685E8 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA876161CC47FB5005685E8 /* Schedule.swift */; };
@@ -29,8 +26,6 @@
 		3EAA498D1C7A855E004C5ACC /* AllViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAA498C1C7A855E004C5ACC /* AllViewController.swift */; };
 		3EAA498F1C7AA266004C5ACC /* DayOfWeekCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAA498E1C7AA266004C5ACC /* DayOfWeekCell.swift */; };
 		3EBD4C071C98E8AC00E9361E /* ScheduleItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD4C061C98E8AC00E9361E /* ScheduleItemCell.swift */; };
-		3EC36E871C9DF28300480887 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC36E861C9DF28300480887 /* Data.swift */; };
-		3EC36E891C9E258100480887 /* FavoritesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC36E881C9E258100480887 /* FavoritesData.swift */; };
 		AE0A7A3E9353B326BC675027 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C181A0251FA6B1C03EF0F29 /* Pods.framework */; };
 		DCB6F0421C5853AA005177A7 /* RadioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB6F0411C5853AA005177A7 /* RadioPlayer.swift */; };
 		DCB6F0441C5853D6005177A7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCB6F0431C5853D6005177A7 /* AVFoundation.framework */; };
@@ -82,11 +77,8 @@
 		3E2FB6941C7422E500448F23 /* SongOptionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongOptionsView.swift; sourceTree = "<group>"; };
 		3E2FB69B1C74F58E00448F23 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
 		3E2FB69C1C74F58E00448F23 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
-		3EA25C8F1C9DD44C0041A4E4 /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
-		3EA25C931C9DD8280041A4E4 /* FavoritesItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesItemCell.swift; sourceTree = "<group>"; };
 		3EA8760A1CC47E24005685E8 /* Show.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Show.swift; sourceTree = "<group>"; };
 		3EA8760C1CC47E2E005685E8 /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
-		3EA876101CC47ED9005685E8 /* WeeklyTimePeriod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyTimePeriod.swift; sourceTree = "<group>"; };
 		3EA876121CC47EFE005685E8 /* TimePeriod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePeriod.swift; sourceTree = "<group>"; };
 		3EA876141CC47F6D005685E8 /* DJ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJ.swift; sourceTree = "<group>"; };
 		3EA876161CC47FB5005685E8 /* Schedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
@@ -95,8 +87,6 @@
 		3EAA498C1C7A855E004C5ACC /* AllViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllViewController.swift; sourceTree = "<group>"; };
 		3EAA498E1C7AA266004C5ACC /* DayOfWeekCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayOfWeekCell.swift; sourceTree = "<group>"; };
 		3EBD4C061C98E8AC00E9361E /* ScheduleItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleItemCell.swift; sourceTree = "<group>"; };
-		3EC36E861C9DF28300480887 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
-		3EC36E881C9E258100480887 /* FavoritesData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesData.swift; sourceTree = "<group>"; };
 		CFA82A567F6259E0743A9EFC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		DCB6F0411C5853AA005177A7 /* RadioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioPlayer.swift; sourceTree = "<group>"; };
 		DCB6F0431C5853D6005177A7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -109,8 +99,8 @@
 		DCBFECC11C98D30D00F28095 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DCBFECC31C98D31400F28095 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		DCBFECC51C98D31A00F28095 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		DCBFECCB1C98D4A800F28095 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageCell.swift; path = WTBUiOS/MessageCell.swift; sourceTree = "<group>"; };
-		DCBFECCD1C98D73200F28095 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Message.swift; path = WTBUiOS/Message.swift; sourceTree = "<group>"; };
+		DCBFECCB1C98D4A800F28095 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		DCBFECCD1C98D73200F28095 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		DCDE66231C595E0400592D95 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		E6A6CD7E08ACCC34D15F9370 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -240,8 +230,6 @@
 				3EAA497D1C7A3D50004C5ACC /* ScheduleController.swift */,
 				3EAA497F1C7A4515004C5ACC /* DJChatController.swift */,
 				3EAA498C1C7A855E004C5ACC /* AllViewController.swift */,
-				3EA25C8F1C9DD44C0041A4E4 /* FavoritesViewController.swift */,
-				DCBFECCF1C98D76500F28095 /* Chat Files */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -258,9 +246,9 @@
 		3EA876091CC47E0C005685E8 /* DataClasses */ = {
 			isa = PBXGroup;
 			children = (
+				DCBFECCD1C98D73200F28095 /* Message.swift */,
 				3EA8760A1CC47E24005685E8 /* Show.swift */,
 				3EA8760C1CC47E2E005685E8 /* Song.swift */,
-				3EA876101CC47ED9005685E8 /* WeeklyTimePeriod.swift */,
 				3EA876121CC47EFE005685E8 /* TimePeriod.swift */,
 				3EA876141CC47F6D005685E8 /* DJ.swift */,
 				3EA876161CC47FB5005685E8 /* Schedule.swift */,
@@ -273,8 +261,6 @@
 			children = (
 				DCB6F0411C5853AA005177A7 /* RadioPlayer.swift */,
 				3E04890B1C585108002CBBF7 /* AppDelegate.swift */,
-				3EC36E861C9DF28300480887 /* Data.swift */,
-				3EC36E881C9E258100480887 /* FavoritesData.swift */,
 			);
 			name = MiscSwift;
 			sourceTree = "<group>";
@@ -282,10 +268,10 @@
 		3EB65C9A1C6ADB560024B2FE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DCBFECCB1C98D4A800F28095 /* MessageCell.swift */,
 				3E2FB6941C7422E500448F23 /* SongOptionsView.swift */,
 				3EAA498E1C7AA266004C5ACC /* DayOfWeekCell.swift */,
 				3EBD4C061C98E8AC00E9361E /* ScheduleItemCell.swift */,
-				3EA25C931C9DD8280041A4E4 /* FavoritesItemCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -297,16 +283,6 @@
 				E6A6CD7E08ACCC34D15F9370 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		DCBFECCF1C98D76500F28095 /* Chat Files */ = {
-			isa = PBXGroup;
-			children = (
-				DCBFECCD1C98D73200F28095 /* Message.swift */,
-				DCBFECCB1C98D4A800F28095 /* MessageCell.swift */,
-			);
-			name = "Chat Files";
-			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -500,24 +476,19 @@
 			files = (
 				3EBD4C071C98E8AC00E9361E /* ScheduleItemCell.swift in Sources */,
 				3EAA498D1C7A855E004C5ACC /* AllViewController.swift in Sources */,
-				3EA25C941C9DD8280041A4E4 /* FavoritesItemCell.swift in Sources */,
 				DCB6F0421C5853AA005177A7 /* RadioPlayer.swift in Sources */,
 				3E04890C1C585108002CBBF7 /* AppDelegate.swift in Sources */,
 				3EAA497E1C7A3D50004C5ACC /* ScheduleController.swift in Sources */,
 				3EA876131CC47EFE005685E8 /* TimePeriod.swift in Sources */,
 				3EA8760B1CC47E24005685E8 /* Show.swift in Sources */,
 				3EAA49801C7A4515004C5ACC /* DJChatController.swift in Sources */,
-				3EA876111CC47ED9005685E8 /* WeeklyTimePeriod.swift in Sources */,
-				3EC36E871C9DF28300480887 /* Data.swift in Sources */,
 				3EAA498F1C7AA266004C5ACC /* DayOfWeekCell.swift in Sources */,
 				3EA876171CC47FB5005685E8 /* Schedule.swift in Sources */,
 				3E2FB6951C7422E500448F23 /* SongOptionsView.swift in Sources */,
 				3EA876151CC47F6D005685E8 /* DJ.swift in Sources */,
-				3EC36E891C9E258100480887 /* FavoritesData.swift in Sources */,
 				DCBFECCE1C98D73200F28095 /* Message.swift in Sources */,
 				DCDE66241C595E0400592D95 /* PlayerViewController.swift in Sources */,
 				3EA8760D1CC47E2E005685E8 /* Song.swift in Sources */,
-				3EA25C901C9DD44C0041A4E4 /* FavoritesViewController.swift in Sources */,
 				DCBFECCC1C98D4A800F28095 /* MessageCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

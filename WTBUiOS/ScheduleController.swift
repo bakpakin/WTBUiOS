@@ -9,8 +9,6 @@
 import Foundation
 import UIKit
 
-var globalSchedule: [[String]]?
-
 class ScheduleController : AllViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var daysOfWeekTable: UITableView!
@@ -18,7 +16,6 @@ class ScheduleController : AllViewController, UITableViewDataSource, UITableView
     
     let daysOfWeek = ["S", "M", "T", "W", "T", "F", "S"]
     
-    var schedule : [[String]]?
     var selectedDay : Int = 0
     
     // Get the current day of the week
@@ -30,10 +27,11 @@ class ScheduleController : AllViewController, UITableViewDataSource, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        dataGetSchedule({ data in
-            self.schedule = data
+        Schedule.defaultSchedule.load() {
+            schedule in
             self.scheduleTable.reloadData()
-        })
+            Schedule.defaultSchedule.saveToUserDefaults()
+        }
         
         selectedDay = getDayOfWeek()
         let path: NSIndexPath = NSIndexPath(forRow: selectedDay, inSection: 0)
@@ -67,18 +65,20 @@ class ScheduleController : AllViewController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if (tableView == self.daysOfWeekTable) {
-            let cell = tableView.dequeueReusableCellWithIdentifier("dayofweekcell")!
+            let cell = tableView.dequeueReusableCellWithIdentifier("dayofweekcell") as! DayOfWeekCell
             (cell.subviews.first!.subviews.first as! UILabel).text! = daysOfWeek[indexPath.row]
             return cell
         } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier("scheduleitemcell")!
+            let cell = tableView.dequeueReusableCellWithIdentifier("scheduleitemcell") as! ScheduleItemCell
             let hour1 = ((2 * indexPath.row + 5) % 12) + 1
             let hour2 = ((2 * indexPath.row + 7) % 12) + 1
+            let hour = (2 * indexPath.row + 6) % 24
             let timestring = "\(hour1)-\(hour2):"
-            if let s = schedule {
-                (cell.subviews.first!.subviews.first as! UILabel).text! = "\(timestring) \(s[indexPath.row][self.selectedDay])"
+            let show = Schedule.defaultSchedule.getShow(selectedDay + 1, atHour: hour)
+            if let s = show {
+                cell.label.text = "\(timestring) \(s.name)"
             } else {
-                (cell.subviews.first!.subviews.first as! UILabel).text! = timestring
+                cell.label.text = "\(timestring)"
             }
             return cell
         }

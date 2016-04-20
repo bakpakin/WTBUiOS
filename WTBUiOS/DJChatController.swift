@@ -33,8 +33,8 @@ class DJChatController : AllViewController, UITextFieldDelegate, UITableViewDele
         inputText.leftViewMode = UITextFieldViewMode.Always
         
         // Register notifications for observer
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: self.view.window)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: self.view.window)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(DJChatController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: self.view.window)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(DJChatController.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: self.view.window)
         
         getMessages()
         timer = NSTimer.scheduledTimerWithTimeInterval(20.0, target: self, selector: #selector(DJChatController.getMessages), userInfo: nil, repeats: true)
@@ -131,7 +131,7 @@ class DJChatController : AllViewController, UITextFieldDelegate, UITableViewDele
                     for messageJson in messages {
                         if let sender = messageJson["sender"].string {
                             if let body = messageJson["message"].string {
-                                self.messages.append(Message(BY: sender, TEXT: body))
+                                self.messages.append(Message(sender: sender, text: body))
                             }
                         }
                     }
@@ -158,7 +158,7 @@ class DJChatController : AllViewController, UITextFieldDelegate, UITableViewDele
     
         let cell = tableView.dequeueReusableCellWithIdentifier("chatcell") as! MessageCell!
         let message = messages[indexPath.row]
-        let text = "\(message.by): \(message.text)"
+        let text = "\(message.sender): \(message.text)"
         cell!.messageLabel.text = text
         cell!.selectionStyle = UITableViewCellSelectionStyle.None
         return cell!

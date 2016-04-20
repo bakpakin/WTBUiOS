@@ -11,6 +11,7 @@ import Foundation
 struct DJ {
     
     let name: String
-    let bio: String
+    let bio: String?
+    let id: Int
     
 }

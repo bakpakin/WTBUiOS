@@ -8,26 +8,10 @@
 
 import Foundation
 
-class Message {
+struct Message {
     
-    var by = ""
-    var text = ""
-    
-    init(BY : String, TEXT : String)
-    {
-        self.by = BY
-        self.text = TEXT
-    }
-    
-    func getBy() -> String
-    {
-        return by
-    }
-    
-    func getText() -> String
-    {
-        return text
-    }
+    let sender: String
+    let text: String
     
     
 }

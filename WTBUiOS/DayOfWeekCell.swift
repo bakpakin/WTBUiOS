@@ -10,12 +10,7 @@ import Foundation
 import UIKit
 
 class DayOfWeekCell : UITableViewCell {
-    
-    // Add some custom stuff here.
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    
-    }
- 
+
+    @IBOutlet weak var label: UILabel!
     
 }
