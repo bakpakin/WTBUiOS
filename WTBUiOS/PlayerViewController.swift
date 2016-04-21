@@ -39,7 +39,6 @@ class PlayerViewController: AllViewController {
                 let song = results["SongName"].string ?? "No Song Information"
                 self.songTitleLabel.text = song
                 self.songArtistLabel.text = artist
-                
                 if let albumArtUrl = results["AlbumArt"]["1000x1000"].string {
                     if let url = NSURL(string: albumArtUrl) {
                         if let data = NSData(contentsOfURL: url) {
@@ -62,7 +61,7 @@ class PlayerViewController: AllViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        imageCoverArt.layer.cornerRadius = imageCoverArt.bounds.width / 2 + 10
+        imageCoverArt.layer.cornerRadius = imageCoverArt.frame.width / 2 + 10
         imageCoverArt.layer.masksToBounds = true
         imageCoverArt.layer.borderColor = CGColorCreate(CGColorSpaceCreateDeviceRGB(), [1.0, 1.0, 1.0, 1.0])
         imageCoverArt.layer.borderWidth = 5

@@ -8,13 +8,13 @@
 
 import Foundation
 import UIKit
+import MGSwipeTableCell
 
-class ScheduleController : AllViewController, UITableViewDataSource, UITableViewDelegate {
+class ScheduleController : AllViewController, UITableViewDataSource, UITableViewDelegate, MGSwipeTableCellDelegate {
     
     @IBOutlet weak var daysOfWeekTable: UITableView!
     @IBOutlet weak var scheduleTable: UITableView!
-    
-    let daysOfWeek = ["S", "M", "T", "W", "T", "F", "S"]
+    @IBOutlet weak var daysOfWeekWidthContraint: NSLayoutConstraint!
     
     var selectedDay : Int = 0
     
@@ -24,7 +24,7 @@ class ScheduleController : AllViewController, UITableViewDataSource, UITableView
         let components = myCalendar!.components(.Weekday, fromDate: NSDate())
         return components.weekday - 1
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         Schedule.defaultSchedule.load() {
@@ -32,21 +32,21 @@ class ScheduleController : AllViewController, UITableViewDataSource, UITableView
             self.scheduleTable.reloadData()
             Schedule.defaultSchedule.saveToUserDefaults()
         }
-        
         selectedDay = getDayOfWeek()
         let path: NSIndexPath = NSIndexPath(forRow: selectedDay, inSection: 0)
         self.daysOfWeekTable.selectRowAtIndexPath(path, animated: false, scrollPosition: .None)
         self.tableView(self.daysOfWeekTable, didSelectRowAtIndexPath: path)
-        
         self.daysOfWeekTable.estimatedRowHeight = self.daysOfWeekTable.bounds.height / 7
         self.daysOfWeekTable.rowHeight = UITableViewAutomaticDimension
         self.scheduleTable.estimatedRowHeight = self.scheduleTable.bounds.height / 10
         self.scheduleTable.rowHeight = UITableViewAutomaticDimension
+        daysOfWeekWidthContraint.constant = self.daysOfWeekTable.bounds.height / 5
+        self.view.layoutIfNeeded()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (tableView == self.daysOfWeekTable) {
-            return daysOfWeek.count
+            return 7
         } else {
             return 10
         }
@@ -58,28 +58,64 @@ class ScheduleController : AllViewController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if tableView == self.daysOfWeekTable {
+            let cell = tableView.cellForRowAtIndexPath(indexPath)!
+            cell.imageView!.image = UIImage(named: "di\(indexPath.row)")
             selectedDay = indexPath.row
             self.scheduleTable.reloadData()
+        } else {
+            let cell = tableView.cellForRowAtIndexPath(indexPath) as! MGSwipeTableCell
+            if cell.textLabel!.text != "" {
+                cell.showSwipe(.RightToLeft, animated: true)
+            }
+        }
+    }
+    
+    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        if tableView == self.daysOfWeekTable {
+            let cell = tableView.cellForRowAtIndexPath(indexPath)!
+            cell.imageView!.image = UIImage(named: "d\(indexPath.row)")
         }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if (tableView == self.daysOfWeekTable) {
-            let cell = tableView.dequeueReusableCellWithIdentifier("dayofweekcell") as! DayOfWeekCell
-            (cell.subviews.first!.subviews.first as! UILabel).text! = daysOfWeek[indexPath.row]
+            let id = "dayofweekcell"
+            var cell = tableView.dequeueReusableCellWithIdentifier(id) as UITableViewCell!
+            if cell == nil {
+                cell = UITableViewCell(style: .Default, reuseIdentifier: id)
+            }
+            cell.backgroundColor = tableView.backgroundColor
+            cell.imageView!.image = UIImage(named: "d\(indexPath.row)")
+            cell.separatorInset = UIEdgeInsetsZero
+            cell.layoutMargins = UIEdgeInsetsZero
+            cell.selectionStyle = .None
             return cell
         } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier("scheduleitemcell") as! ScheduleItemCell
-            let hour1 = ((2 * indexPath.row + 5) % 12) + 1
-            let hour2 = ((2 * indexPath.row + 7) % 12) + 1
-            let hour = (2 * indexPath.row + 6) % 24
-            let timestring = "\(hour1)-\(hour2):"
-            let show = Schedule.defaultSchedule.getShow(selectedDay + 1, atHour: hour)
-            if let s = show {
-                cell.label.text = "\(timestring) \(s.name)"
-            } else {
-                cell.label.text = "\(timestring)"
+            let id = "scheduleitemcell"
+            var cell = tableView.dequeueReusableCellWithIdentifier(id) as! MGSwipeTableCell!
+            if cell == nil {
+                cell = MGSwipeTableCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: id)
             }
+            let date = TimePeriod.getDate(selectedDay + 1, hour: (2 * indexPath.row + 6) % 24)
+            let show = Schedule.defaultSchedule.getShow(on: date)
+            let period = show?.playingAtPeriod(date)
+            if let p = period {
+                cell.detailTextLabel!.text = show?.getTimeString(p) ?? ""
+            } else {
+                cell.detailTextLabel!.text = ""
+            }
+            cell.textLabel!.text = show?.name ?? ""
+            cell.backgroundColor = tableView.backgroundView?.backgroundColor
+            cell.textLabel?.textColor = UIColor.whiteColor()
+            cell.detailTextLabel?.textColor = UIColor.whiteColor()
+            cell.delegate = self
+            //configure right buttons
+            cell.rightButtons = [
+                MGSwipeButton(title: "Info", backgroundColor: UIColor.darkGrayColor()),
+                MGSwipeButton(title: "Favorite", backgroundColor: UIColor.lightGrayColor())
+            ]
+            cell.rightSwipeSettings.transition = .Drag
+            cell.selectionStyle = .None
             return cell
         }
     }
@@ -90,6 +126,23 @@ class ScheduleController : AllViewController, UITableViewDataSource, UITableView
         } else {
             return tableView.bounds.height / 10
         }
+    }
+    
+    func swipeTableCell(cell: MGSwipeTableCell!, shouldHideSwipeOnTap point: CGPoint) -> Bool {
+        return true
+    }
+    
+    func swipeTableCell(cell: MGSwipeTableCell!, tappedButtonAtIndex index: Int, direction: MGSwipeDirection, fromExpansion: Bool) -> Bool {
+        if (index == 0) { // Info
+            //
+        } else { // Favorite
+            
+        }
+        return true
+    }
+    
+    func swipeTableCell(cell: MGSwipeTableCell!, canSwipe direction: MGSwipeDirection) -> Bool {
+        return cell.textLabel!.text != ""
     }
     
 }

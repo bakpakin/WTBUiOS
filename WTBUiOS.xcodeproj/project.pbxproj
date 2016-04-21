@@ -24,8 +24,6 @@
 		3EAA497E1C7A3D50004C5ACC /* ScheduleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAA497D1C7A3D50004C5ACC /* ScheduleController.swift */; };
 		3EAA49801C7A4515004C5ACC /* DJChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAA497F1C7A4515004C5ACC /* DJChatController.swift */; };
 		3EAA498D1C7A855E004C5ACC /* AllViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAA498C1C7A855E004C5ACC /* AllViewController.swift */; };
-		3EAA498F1C7AA266004C5ACC /* DayOfWeekCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAA498E1C7AA266004C5ACC /* DayOfWeekCell.swift */; };
-		3EBD4C071C98E8AC00E9361E /* ScheduleItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD4C061C98E8AC00E9361E /* ScheduleItemCell.swift */; };
 		AE0A7A3E9353B326BC675027 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C181A0251FA6B1C03EF0F29 /* Pods.framework */; };
 		DCB6F0421C5853AA005177A7 /* RadioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB6F0411C5853AA005177A7 /* RadioPlayer.swift */; };
 		DCB6F0441C5853D6005177A7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCB6F0431C5853D6005177A7 /* AVFoundation.framework */; };
@@ -85,8 +83,6 @@
 		3EAA497D1C7A3D50004C5ACC /* ScheduleController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleController.swift; sourceTree = "<group>"; };
 		3EAA497F1C7A4515004C5ACC /* DJChatController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJChatController.swift; sourceTree = "<group>"; };
 		3EAA498C1C7A855E004C5ACC /* AllViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllViewController.swift; sourceTree = "<group>"; };
-		3EAA498E1C7AA266004C5ACC /* DayOfWeekCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayOfWeekCell.swift; sourceTree = "<group>"; };
-		3EBD4C061C98E8AC00E9361E /* ScheduleItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleItemCell.swift; sourceTree = "<group>"; };
 		CFA82A567F6259E0743A9EFC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		DCB6F0411C5853AA005177A7 /* RadioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioPlayer.swift; sourceTree = "<group>"; };
 		DCB6F0431C5853D6005177A7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -270,8 +266,6 @@
 			children = (
 				DCBFECCB1C98D4A800F28095 /* MessageCell.swift */,
 				3E2FB6941C7422E500448F23 /* SongOptionsView.swift */,
-				3EAA498E1C7AA266004C5ACC /* DayOfWeekCell.swift */,
-				3EBD4C061C98E8AC00E9361E /* ScheduleItemCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -474,7 +468,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3EBD4C071C98E8AC00E9361E /* ScheduleItemCell.swift in Sources */,
 				3EAA498D1C7A855E004C5ACC /* AllViewController.swift in Sources */,
 				DCB6F0421C5853AA005177A7 /* RadioPlayer.swift in Sources */,
 				3E04890C1C585108002CBBF7 /* AppDelegate.swift in Sources */,
@@ -482,7 +475,6 @@
 				3EA876131CC47EFE005685E8 /* TimePeriod.swift in Sources */,
 				3EA8760B1CC47E24005685E8 /* Show.swift in Sources */,
 				3EAA49801C7A4515004C5ACC /* DJChatController.swift in Sources */,
-				3EAA498F1C7AA266004C5ACC /* DayOfWeekCell.swift in Sources */,
 				3EA876171CC47FB5005685E8 /* Schedule.swift in Sources */,
 				3E2FB6951C7422E500448F23 /* SongOptionsView.swift in Sources */,
 				3EA876151CC47F6D005685E8 /* DJ.swift in Sources */,

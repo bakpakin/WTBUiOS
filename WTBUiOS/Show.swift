@@ -27,6 +27,7 @@ struct Show {
     let description: String
     let showTimes: [TimePeriod]
     let djs: [DJ]
+    var favorited: Bool = false
     
     init(json: JSON) {
         let timeStartString = json["OnairTime"].string ?? "00:00:00"
@@ -58,6 +59,16 @@ struct Show {
         self.showTimes = showTimes
     }
     
+    func playingAtPeriod(date: NSDate) -> Int? {
+        let dt = TimePeriod.dateToWeekdayAndTime(date)
+        for i in 0..<showTimes.count {
+            if showTimes[i].contains(dt) {
+                return i
+            }
+        }
+        return nil
+    }
+    
     func isPlayingAt(date: NSDate) -> Bool {
         let dt = TimePeriod.dateToWeekdayAndTime(date)
         for period in showTimes {
@@ -66,6 +77,10 @@ struct Show {
             }
         }
         return false
+    }
+    
+    func getTimeString(period: Int) -> String {
+        return showTimes[period].getHourlyShorthand()
     }
     
 }

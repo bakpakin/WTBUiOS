@@ -108,4 +108,24 @@ struct TimePeriod {
         }
     }
     
+    private func hour24to12(hour: Int) -> String {
+        switch hour {
+        case 0:
+            return "12AM"
+        case 1..<12:
+            return "\(hour)AM"
+        case 12:
+            return "12PM"
+        default:
+            return "\(hour - 12)PM"
+        }
+    }
+    
+    func getHourlyShorthand() -> String {
+        let end = start.dateByAddingTimeInterval(length)
+        let startHour = calendar.components(.Hour, fromDate: start).hour
+        let endHour = calendar.components(.Hour, fromDate: end).hour
+        return "\(hour24to12(startHour)) - \(hour24to12(endHour))"
+    }
+    
 }

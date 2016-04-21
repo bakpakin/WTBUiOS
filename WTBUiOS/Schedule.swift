@@ -16,11 +16,19 @@ public class Schedule {
     
     var shows: [Show] = []
     
+    func loadFavoritesData() -> Bool {
+        // TODO
+        return true
+    }
+    
     func saveToUserDefaults() -> Bool {
+        // TODO
         return true
     }
     
     func loadFromUserDefaults(callback: ((Schedule)->Void)?) -> Bool {
+        // Should return false if data is too old
+        // TODO
         return false
     }
     

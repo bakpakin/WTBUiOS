@@ -240,36 +240,6 @@
                                 <color key="backgroundColor" red="0.86274509799999999" green="0.24313725489999999" blue="0.24155809973624162" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.86274509803921573" green="0.24313725490196078" blue="0.24155809974996711" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexTrackingBackgroundColor" red="0.86274509799999999" green="0.24313725489999999" blue="0.24155809973624162" alpha="1" colorSpace="calibratedRGB"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="scheduleitemcell" id="OYQ-Bq-X7h" customClass="ScheduleItemCell" customModule="WTBUiOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="540" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OYQ-Bq-X7h" id="52t-zT-1SW">
-                                            <rect key="frame" x="0.0" y="0.0" width="540" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dd0-44-WKA">
-                                                    <rect key="frame" x="8" y="8" width="484" height="28"/>
-                                                    <color key="backgroundColor" red="0.86274509799999999" green="0.24161073829999999" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <color key="tintColor" red="0.86274509799999999" green="0.24161073829999999" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" red="0.86274509799999999" green="0.24161073829999999" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Dd0-44-WKA" secondAttribute="trailing" id="Rce-2D-LBH"/>
-                                                <constraint firstItem="Dd0-44-WKA" firstAttribute="top" secondItem="52t-zT-1SW" secondAttribute="topMargin" id="bpo-No-Tac"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Dd0-44-WKA" secondAttribute="bottom" id="g2O-aG-bwz"/>
-                                                <constraint firstItem="Dd0-44-WKA" firstAttribute="leading" secondItem="52t-zT-1SW" secondAttribute="leadingMargin" id="pgm-ZF-0DM"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="label" destination="Dd0-44-WKA" id="Ewe-tI-P6e"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="brn-5G-Bi9" id="xBp-mN-PUg"/>
                                     <outlet property="delegate" destination="brn-5G-Bi9" id="U3b-qW-ti6"/>
@@ -279,49 +249,13 @@
                                 <rect key="frame" x="0.0" y="64" width="60" height="467"/>
                                 <color key="backgroundColor" red="0.86274509803921573" green="0.24161073825503357" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="4bE-vY-g6b"/>
                                     <constraint firstAttribute="width" constant="60" id="96c-Y2-vgy"/>
                                 </constraints>
                                 <color key="sectionIndexBackgroundColor" red="0.86274509799999999" green="0.24313725489999999" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexTrackingBackgroundColor" red="0.86274509803921573" green="0.24313725490196078" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="dayofweekcell" id="Wbh-c2-aAb" customClass="DayOfWeekCell" customModule="WTBUiOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="60" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wbh-c2-aAb" id="7qj-pf-XF6">
-                                            <rect key="frame" x="0.0" y="0.0" width="60" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="S" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jMI-QR-fhY">
-                                                    <rect key="frame" x="8" y="8" width="44" height="28"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" red="0.86274509799999999" green="0.24313725489999999" blue="0.2415580997" alpha="1" colorSpace="calibratedRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="jMI-QR-fhY" secondAttribute="trailing" id="5sO-ut-ZUw"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="jMI-QR-fhY" secondAttribute="bottom" id="DQQ-0F-8XN"/>
-                                                <constraint firstItem="jMI-QR-fhY" firstAttribute="centerX" secondItem="7qj-pf-XF6" secondAttribute="centerX" id="INT-LF-mim"/>
-                                                <constraint firstAttribute="leadingMargin" secondItem="jMI-QR-fhY" secondAttribute="leading" id="WC6-qg-Dkm"/>
-                                                <constraint firstItem="jMI-QR-fhY" firstAttribute="centerY" secondItem="7qj-pf-XF6" secondAttribute="centerY" id="b8S-fz-laL"/>
-                                                <constraint firstAttribute="topMargin" secondItem="jMI-QR-fhY" secondAttribute="top" id="u2z-li-mu4"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="label" destination="jMI-QR-fhY" id="UfN-Vb-qP2"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
                                 <sections/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="4bE-vY-g6b"/>
-                                    </mask>
-                                </variation>
                                 <connections>
-                                    <outlet property="dataSource" destination="brn-5G-Bi9" id="LL0-dN-15G"/>
+                                    <outlet property="dataSource" destination="brn-5G-Bi9" id="uu6-1R-T7J"/>
                                     <outlet property="delegate" destination="brn-5G-Bi9" id="5cC-zG-ped"/>
                                 </connections>
                             </tableView>
@@ -345,6 +279,7 @@
                     </tabBarItem>
                     <connections>
                         <outlet property="daysOfWeekTable" destination="gbO-Cc-a0n" id="KHd-40-9gZ"/>
+                        <outlet property="daysOfWeekWidthContraint" destination="96c-Y2-vgy" id="jgM-Tf-2mW"/>
                         <outlet property="scheduleTable" destination="7Mr-Nj-ZbF" id="v82-LD-yKC"/>
                     </connections>
                 </viewController>
