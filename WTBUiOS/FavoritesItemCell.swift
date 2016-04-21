@@ -30,28 +30,27 @@ class FavoritesItemCell : UITableViewCell {
     
     func switchToggled() {
         let defaults = NSUserDefaults.standardUserDefaults()
-        var favShowsSet = [String]()
         if(defaults.objectForKey("favoriteShows") != nil)
         {
-            favShowsSet = defaults.objectForKey("favoriteShows") as! [String]
+            favShows = defaults.objectForKey("favoriteShows") as! [String]
 
         }
         if(favoriteSwitch!.on)
         {
-            favShowsSet.append((textlabel?.text)!)
+            favShows.append((textlabel?.text)!)
             print("ADD")
-            print(favShowsSet)
+            print(favShows)
         }
         else
         {
-            let index = favShowsSet.indexOf((textlabel?.text)!)
+            let index = favShows.indexOf((textlabel?.text)!)
             if(index != nil)
             {
-                favShowsSet.removeAtIndex(index!)
+                favShows.removeAtIndex(index!)
             }
         }
-        defaults.setObject(favShowsSet, forKey: "favoriteShows")
+        defaults.setObject(favShows, forKey: "favoriteShows")
         defaults.synchronize()
-    
+           
     }
 }

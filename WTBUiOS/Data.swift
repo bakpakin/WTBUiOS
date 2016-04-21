@@ -102,7 +102,7 @@ func dataGetSongData(callback: (String, String)->Void) {
                     let dateString: String = (item["pubDate"].element?.text)!
                     let itemMap = [
                         "title": (item["title"].element?.text)!,
-                        "data": dateString
+                        "date": dateString
                     ]
                     schedule.append(itemMap)
                 }

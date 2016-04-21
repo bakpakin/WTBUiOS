@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  WTBUiOS
 //
-//  Created by Calvin Rose on 1/26/16.
-//  Copyright © 2016 Calvin Rose. All rights reserved.
+//  Created by Ben Cootner on 1/26/16.
+//  Copyright © 2016 Ben Cootner. All rights reserved.
 //
 
 import UIKit

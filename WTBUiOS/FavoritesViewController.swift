@@ -9,10 +9,12 @@
 import Foundation
 import UIKit
 
+var favShows = [String]()
+
 class FavoritesViewController : AllViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var favoritesTable: UITableView!
-    var favShowsSet = [String]()
+ 
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,16 +25,12 @@ class FavoritesViewController : AllViewController, UITableViewDataSource, UITabl
                 self.favoritesTable.reloadData()
             })
         }
-    }
-    
-    override func viewWillAppear(animated: Bool) {
         let defaults = NSUserDefaults.standardUserDefaults()
         if(defaults.objectForKey("favoriteShows") != nil)
         {
-            favShowsSet = defaults.objectForKey("favoriteShows") as! [String]
+            favShows = defaults.objectForKey("favoriteShows") as! [String]
             
         }
-        favoritesTable.reloadData()
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -43,7 +41,7 @@ class FavoritesViewController : AllViewController, UITableViewDataSource, UITabl
         let cell = tableView.dequeueReusableCellWithIdentifier("scheduleitemcell") as! FavoritesItemCell
         if let showList = dataShowList {
             let showName = showList[indexPath.row]
-            if(favShowsSet.contains(showName))
+            if(favShows.contains(showName))
             {
                 print(showName)
                 cell.favoriteSwitch!.setOn(true, animated: false)
@@ -69,6 +67,7 @@ class FavoritesViewController : AllViewController, UITableViewDataSource, UITabl
     
     func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return false
+        
     }
     
 }
