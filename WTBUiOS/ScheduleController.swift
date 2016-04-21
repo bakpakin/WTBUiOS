@@ -14,7 +14,6 @@ class ScheduleController : AllViewController, UITableViewDataSource, UITableView
     
     @IBOutlet weak var daysOfWeekTable: UITableView!
     @IBOutlet weak var scheduleTable: UITableView!
-    @IBOutlet weak var daysOfWeekWidthContraint: NSLayoutConstraint!
     
     var selectedDay : Int = 0
     
@@ -36,12 +35,10 @@ class ScheduleController : AllViewController, UITableViewDataSource, UITableView
         let path: NSIndexPath = NSIndexPath(forRow: selectedDay, inSection: 0)
         self.daysOfWeekTable.selectRowAtIndexPath(path, animated: false, scrollPosition: .None)
         self.tableView(self.daysOfWeekTable, didSelectRowAtIndexPath: path)
-        self.daysOfWeekTable.estimatedRowHeight = self.daysOfWeekTable.bounds.height / 7
+        self.daysOfWeekTable.estimatedRowHeight = self.daysOfWeekTable.frame.height / 7
+        self.scheduleTable.estimatedRowHeight = self.scheduleTable.frame.height / 10
         self.daysOfWeekTable.rowHeight = UITableViewAutomaticDimension
-        self.scheduleTable.estimatedRowHeight = self.scheduleTable.bounds.height / 10
         self.scheduleTable.rowHeight = UITableViewAutomaticDimension
-        daysOfWeekWidthContraint.constant = self.daysOfWeekTable.bounds.height / 5
-        self.view.layoutIfNeeded()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -86,8 +83,6 @@ class ScheduleController : AllViewController, UITableViewDataSource, UITableView
             }
             cell.backgroundColor = tableView.backgroundColor
             cell.imageView!.image = UIImage(named: "d\(indexPath.row)")
-            cell.separatorInset = UIEdgeInsetsZero
-            cell.layoutMargins = UIEdgeInsetsZero
             cell.selectionStyle = .None
             return cell
         } else {

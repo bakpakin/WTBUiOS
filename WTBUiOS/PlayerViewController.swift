@@ -25,11 +25,21 @@ class PlayerViewController: AllViewController {
         getSongData()
     }
     
+    func setAlbumImage(image: UIImage!) {
+        imageCoverArt.image = image
+        imageCoverArt.layer.cornerRadius = imageCoverArt.frame.width / 2
+        imageCoverArt.layer.masksToBounds = true
+        imageCoverArt.clipsToBounds = true
+        imageCoverArt.layer.borderColor = CGColorCreate(CGColorSpaceCreateDeviceRGB(), [1.0, 1.0, 1.0, 1.0])
+        imageCoverArt.layer.borderWidth = 5
+    }
+    
     func getSongData(songID: Int? = nil) {
         var parameters = [String : AnyObject]()
         if let id = songID {
             parameters["SongID"] = id
         }
+        let defaultImage = "Cover"
         Alamofire.request(.GET, "https://gaiwtbubackend.herokuapp.com/song", parameters: parameters).responseJSON {
             response in
             if let nativeJson = response.result.value {
@@ -42,17 +52,17 @@ class PlayerViewController: AllViewController {
                 if let albumArtUrl = results["AlbumArt"]["1000x1000"].string {
                     if let url = NSURL(string: albumArtUrl) {
                         if let data = NSData(contentsOfURL: url) {
-                            self.imageCoverArt.image = UIImage(data: data)
+                            self.setAlbumImage(UIImage(data: data))
                         } else {
-                            self.imageCoverArt.image = UIImage(named: "Cover")
+                            self.setAlbumImage(UIImage(named: defaultImage))
                             log.debug("Could not get image data from album art url.")
                         }
                     } else {
-                        self.imageCoverArt.image = UIImage(named: "Cover")
+                        self.setAlbumImage(UIImage(named: defaultImage))
                         log.debug("Could not read album art url.")
                     }
                 } else {
-                    self.imageCoverArt.image = UIImage(named: "Cover")
+                   self.setAlbumImage(UIImage(named: defaultImage))
                     log.debug("No album art url.")
                 }
             }
@@ -61,10 +71,8 @@ class PlayerViewController: AllViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        imageCoverArt.layer.cornerRadius = imageCoverArt.frame.width / 2 + 10
-        imageCoverArt.layer.masksToBounds = true
-        imageCoverArt.layer.borderColor = CGColorCreate(CGColorSpaceCreateDeviceRGB(), [1.0, 1.0, 1.0, 1.0])
-        imageCoverArt.layer.borderWidth = 5
+        view.layoutIfNeeded()
+        setAlbumImage(imageCoverArt.image!)
         getCurrentSongData()
         timer = NSTimer.scheduledTimerWithTimeInterval(15.0, target: self, selector: #selector(PlayerViewController.getCurrentSongData), userInfo: nil, repeats: true)
         playRadio()
