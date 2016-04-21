@@ -19,16 +19,46 @@ private let weekDaysToInts = [
     "Sat": 7
 ]
 
-struct Show {
+public class Show : NSObject, NSCoding {
     
     let id: Int
     let name: String
-    let url: String
-    let description: String
-    let showTimes: [TimePeriod]
-    let djs: [DJ]
+    var url: String
+    var showDescription: String
+    var showTimes: [TimePeriod]
+    var djs: [DJ]
     var favorited: Bool = false
     
+    init(id: Int, name: String) {
+        self.id = id
+        self.name = name
+        url = ""
+        showDescription = ""
+        showTimes = []
+        djs = []
+    }
+    
+    public func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeInt(Int32(id), forKey: "id")
+        aCoder.encodeObject(name, forKey: "name")
+        aCoder.encodeObject(url, forKey: "url")
+        aCoder.encodeObject(showDescription, forKey: "showDescription")
+        aCoder.encodeObject(showTimes, forKey: "showTimes")
+        aCoder.encodeObject(djs, forKey: "djs")
+        aCoder.encodeBool(favorited, forKey: "favorited")
+    }
+    
+    required public init(coder decoder: NSCoder) {
+        id = Int(decoder.decodeIntForKey("id"))
+        name = decoder.decodeObjectForKey("name") as! String
+        url = decoder.decodeObjectForKey("url") as! String
+        showDescription = decoder.decodeObjectForKey("showDescription") as! String
+        showTimes = decoder.decodeObjectForKey("showTimes") as! [TimePeriod]
+        djs = decoder.decodeObjectForKey("djs") as! [DJ]
+        favorited = decoder.decodeBoolForKey("favorited")
+    }
+
+    // Initialized a show from JSON given from the backend.
     init(json: JSON) {
         let timeStartString = json["OnairTime"].string ?? "00:00:00"
         let timeEndString = json["OffairTime"].string ?? "02:00:00"
@@ -36,13 +66,13 @@ struct Show {
         id = json["ShowID"].int ?? -1
         name = json["ShowName"].string ?? "Unamed Show"
         url = json["ShowUrl"].string ?? ""
-        description = json["ShowDescription"].string ?? ""
+        showDescription = json["ShowDescription"].string ?? ""
         
         var temp_djs = [DJ]()
         if let djsJson = json["ShowUsers"].array {
             for dj in djsJson {
                 let id = dj["UserID"].int ?? -1
-                let name = dj["DJName"].string ?? "Unamed DJ Calvin"
+                let name = dj["DJName"].string ?? "Unamed Grandmaster Flash"
                 temp_djs.append(DJ(name: name, bio: nil, id: id))
             }
         }
@@ -59,28 +89,14 @@ struct Show {
         self.showTimes = showTimes
     }
     
-    func playingAtPeriod(date: NSDate) -> Int? {
-        let dt = TimePeriod.dateToWeekdayAndTime(date)
-        for i in 0..<showTimes.count {
-            if showTimes[i].contains(dt) {
-                return i
-            }
-        }
-        return nil
-    }
-    
-    func isPlayingAt(date: NSDate) -> Bool {
+    func playingAtPeriod(date: NSDate) -> TimePeriod? {
         let dt = TimePeriod.dateToWeekdayAndTime(date)
         for period in showTimes {
             if period.contains(dt) {
-                return true
+                return period
             }
         }
-        return false
-    }
-    
-    func getTimeString(period: Int) -> String {
-        return showTimes[period].getHourlyShorthand()
+        return nil
     }
     
 }

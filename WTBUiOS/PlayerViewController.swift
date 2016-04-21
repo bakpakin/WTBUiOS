@@ -49,6 +49,14 @@ class PlayerViewController: AllViewController {
                 let song = results["SongName"].string ?? "No Song Information"
                 self.songTitleLabel.text = song
                 self.songArtistLabel.text = artist
+                Schedule.defaultSchedule.load() {
+                    schedule in
+                    if let showName = schedule.getCurrentShow()?.name {
+                        self.navigationItem.title = showName
+                    } else {
+                        self.navigationItem.title = "Radio"
+                    }
+                }
                 if let albumArtUrl = results["AlbumArt"]["1000x1000"].string {
                     if let url = NSURL(string: albumArtUrl) {
                         if let data = NSData(contentsOfURL: url) {

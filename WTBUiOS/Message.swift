@@ -12,6 +12,6 @@ struct Message {
     
     let sender: String
     let text: String
-    
+    let timestamp: Int64
     
 }

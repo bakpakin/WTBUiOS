@@ -48,7 +48,7 @@ private func normalizeDate(date: NSDate) -> NSDate {
     return makeDate(weekDay, hour: hour, minute: minute, second: second)
 }
 
-struct TimePeriod {
+final class TimePeriod : NSObject, NSCoding {
     
     static func dateToWeekdayAndTime(date: NSDate) -> NSDate {
         return normalizeDate(date)
@@ -86,6 +86,22 @@ struct TimePeriod {
         self.repeatsWeekly = repeatsWeekly
         self.startDay = calendar.components(.Weekday, fromDate: start).weekday
         startNormalized = false
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(start, forKey: "start")
+        aCoder.encodeDouble(length, forKey: "length")
+        aCoder.encodeInteger(startDay, forKey: "startDay")
+        aCoder.encodeBool(repeatsWeekly, forKey: "repeatsWeekly")
+        aCoder.encodeBool(startNormalized, forKey: "startNormalized")
+    }
+    
+    required init(coder decoder: NSCoder) {
+        start = decoder.decodeObjectForKey("start") as! NSDate
+        length = decoder.decodeDoubleForKey("length")
+        startDay = decoder.decodeIntegerForKey("startDay")
+        repeatsWeekly = decoder.decodeBoolForKey("repeatsWeekly")
+        startNormalized = decoder.decodeBoolForKey("startNormalized")
     }
     
     // Checks if this TimePeriod overlaps with the given NSDate.

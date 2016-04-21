@@ -10,25 +10,65 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-public class Schedule {
+public class Schedule : NSObject, NSCoding {
     
     static let defaultSchedule: Schedule = Schedule()
     
-    var shows: [Show] = []
+    let favoritesKey = "favoriteShows"
+    let showsKey = "allShows"
+    let lastLoadedFromBackend = "lastLoadedFromBackend"
     
-    func loadFavoritesData() -> Bool {
-        // TODO
-        return true
+    var shows: [Show]
+    
+    public override init() {
+        shows = []
+        super.init()
     }
     
-    func saveToUserDefaults() -> Bool {
-        // TODO
-        return true
+    public func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(shows, forKey: "shows")
     }
     
-    func loadFromUserDefaults(callback: ((Schedule)->Void)?) -> Bool {
-        // Should return false if data is too old
-        // TODO
+    required public init(coder decoder: NSCoder) {
+        self.shows = (decoder.decodeObjectForKey("show") as? [Show]) ?? []
+    }
+    
+    private func loadFavoritesData() {
+        if let favShows = NSUserDefaults.standardUserDefaults().objectForKey(favoritesKey) as? [Int] {
+            for show in shows {
+                if favShows.contains(show.id) {
+                    show.favorited = true
+                }
+            }
+        }
+    }
+    
+    func saveToUserDefaults() {
+        var favorites = [Int]()
+        for show in shows {
+            if show.favorited {
+                favorites.append(show.id)
+            }
+        }
+        NSUserDefaults.standardUserDefaults().setValue(favorites, forKey: favoritesKey)
+        NSUserDefaults.standardUserDefaults().setValue(NSKeyedArchiver.archivedDataWithRootObject(shows), forKey: showsKey)
+    }
+    
+    func loadFromUserDefaults() -> Bool {
+        if let lastBackendLoad = NSUserDefaults.standardUserDefaults().objectForKey(lastLoadedFromBackend) as? NSDate {
+            // If has been less than 3 days since last backend load.
+            // This ensures that users don't get really old data.
+            if NSDate().timeIntervalSinceDate(lastBackendLoad) < 86400 * 3 {
+                if let showsData = NSUserDefaults.standardUserDefaults().objectForKey(showsKey) as? NSData {
+                    let shows = NSKeyedUnarchiver.unarchiveObjectWithData(showsData) as? [Show]
+                    self.shows = shows ?? []
+                    self.loadFavoritesData()
+                    return true
+                }
+            }
+        }
+        // Remove any potentially bad cache date just in case.
+        NSUserDefaults.standardUserDefaults().removeObjectForKey(showsKey)
         return false
     }
     
@@ -46,6 +86,7 @@ public class Schedule {
                             foundShows.insert(show.id)
                         }
                     }
+                    NSUserDefaults.standardUserDefaults().setValue(NSDate(), forKey: self.lastLoadedFromBackend)
                     if let cb = callback {
                         return cb(self)
                     }
@@ -59,20 +100,23 @@ public class Schedule {
     }
     
     func load(callback: ((Schedule)->Void)?) {
-        if !loadFromUserDefaults(callback) {
+        if loadFromUserDefaults() {
+            if let cb = callback {
+                cb(self)
+            }
+        } else {
             loadFromBackend(callback)
         }
     }
     
-    // Make sure that no two shows overlap, etc.
-    func validate() -> Bool {
-        return true
+    func getCurrentShow() ->Show? {
+        return getShow(on: NSDate())
     }
     
     func getShow(on date: NSDate) -> Show? {
         let dt = TimePeriod.dateToWeekdayAndTime(date)
         for show in shows {
-            if show.isPlayingAt(dt) {
+            if show.playingAtPeriod(dt) != nil {
                 return show
             }
         }

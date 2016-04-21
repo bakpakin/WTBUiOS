@@ -40,13 +40,18 @@ class DJChatController : AllViewController, UITextFieldDelegate, UITableViewDele
         timer = NSTimer.scheduledTimerWithTimeInterval(20.0, target: self, selector: #selector(DJChatController.getMessages), userInfo: nil, repeats: true)
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        getMessages()
+    }
+    
     override func viewWillDisappear(animated: Bool) {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: self.view.window)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: self.view.window)
     }
     
     func keyboardWillShow(notification: NSNotification) {
-        let userInfo: [NSObject : AnyObject] = notification.userInfo!
+        let userInfo = notification.userInfo!
         let keyboardSize: CGSize = userInfo[UIKeyboardFrameBeginUserInfoKey]!.CGRectValue.size
         bottomConstraint.constant = keyboardSize.height - self.tabBarController!.tabBar.frame.height - 1
         
@@ -98,9 +103,6 @@ class DJChatController : AllViewController, UITextFieldDelegate, UITableViewDele
         return true
     }
     
-    override func viewDidAppear(animated: Bool) {
-        getMessages()
-    }
     
     func getTokenAndSendMessage(message: String) {
         // TODO Add Username
@@ -131,7 +133,9 @@ class DJChatController : AllViewController, UITextFieldDelegate, UITableViewDele
                     for messageJson in messages {
                         if let sender = messageJson["sender"].string {
                             if let body = messageJson["message"].string {
-                                self.messages.append(Message(sender: sender, text: body))
+                                if let timestamp = messageJson["timestamp"].int64 {
+                                    self.messages.append(Message(sender: sender, text: body, timestamp: timestamp))
+                                }
                             }
                         }
                     }
@@ -155,12 +159,15 @@ class DJChatController : AllViewController, UITextFieldDelegate, UITableViewDele
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    
-        let cell = tableView.dequeueReusableCellWithIdentifier("chatcell") as! MessageCell!
+        let id = "chatcell"
+        var cell = tableView.dequeueReusableCellWithIdentifier(id) as UITableViewCell!
+        if cell == nil {
+            cell = UITableViewCell(style: .Subtitle, reuseIdentifier: id)
+        }
         let message = messages[indexPath.row]
-        let text = "\(message.sender): \(message.text)"
-        cell!.messageLabel.text = text
-        cell!.selectionStyle = UITableViewCellSelectionStyle.None
+        cell.textLabel!.text = message.sender
+        cell.detailTextLabel!.text = message.text
+        cell.selectionStyle = .None
         return cell!
     
     }

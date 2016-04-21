@@ -15,6 +15,8 @@
 		3E04892C1C585108002CBBF7 /* WTBUiOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E04892B1C585108002CBBF7 /* WTBUiOSUITests.swift */; };
 		3E2FB69D1C74F58E00448F23 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E2FB69B1C74F58E00448F23 /* play.png */; };
 		3E2FB69E1C74F58E00448F23 /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E2FB69C1C74F58E00448F23 /* pause.png */; };
+		3E5968891CC893FD00CC460B /* MessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5968881CC893FD00CC460B /* MessageBubble.swift */; };
+		3E59688B1CC95CFE00CC460B /* ScheduleItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E59688A1CC95CFE00CC460B /* ScheduleItemCell.swift */; };
 		3EA8760B1CC47E24005685E8 /* Show.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA8760A1CC47E24005685E8 /* Show.swift */; };
 		3EA8760D1CC47E2E005685E8 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA8760C1CC47E2E005685E8 /* Song.swift */; };
 		3EA876131CC47EFE005685E8 /* TimePeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA876121CC47EFE005685E8 /* TimePeriod.swift */; };
@@ -35,7 +37,6 @@
 		DCBFECC21C98D30D00F28095 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCBFECC11C98D30D00F28095 /* SystemConfiguration.framework */; };
 		DCBFECC41C98D31400F28095 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DCBFECC31C98D31400F28095 /* libz.tbd */; };
 		DCBFECC61C98D31A00F28095 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DCBFECC51C98D31A00F28095 /* libsqlite3.tbd */; };
-		DCBFECCC1C98D4A800F28095 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBFECCB1C98D4A800F28095 /* MessageCell.swift */; };
 		DCBFECCE1C98D73200F28095 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBFECCD1C98D73200F28095 /* Message.swift */; };
 		DCDE66241C595E0400592D95 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCDE66231C595E0400592D95 /* PlayerViewController.swift */; };
 /* End PBXBuildFile section */
@@ -73,6 +74,8 @@
 		3E04892D1C585108002CBBF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3E2FB69B1C74F58E00448F23 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
 		3E2FB69C1C74F58E00448F23 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
+		3E5968881CC893FD00CC460B /* MessageBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageBubble.swift; sourceTree = "<group>"; };
+		3E59688A1CC95CFE00CC460B /* ScheduleItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleItemCell.swift; sourceTree = "<group>"; };
 		3EA8760A1CC47E24005685E8 /* Show.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Show.swift; sourceTree = "<group>"; };
 		3EA8760C1CC47E2E005685E8 /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		3EA876121CC47EFE005685E8 /* TimePeriod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePeriod.swift; sourceTree = "<group>"; };
@@ -93,7 +96,6 @@
 		DCBFECC11C98D30D00F28095 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DCBFECC31C98D31400F28095 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		DCBFECC51C98D31A00F28095 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		DCBFECCB1C98D4A800F28095 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		DCBFECCD1C98D73200F28095 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		DCDE66231C595E0400592D95 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		E6A6CD7E08ACCC34D15F9370 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -262,7 +264,8 @@
 		3EB65C9A1C6ADB560024B2FE /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				DCBFECCB1C98D4A800F28095 /* MessageCell.swift */,
+				3E5968881CC893FD00CC460B /* MessageBubble.swift */,
+				3E59688A1CC95CFE00CC460B /* ScheduleItemCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -468,6 +471,8 @@
 				3EAA498D1C7A855E004C5ACC /* AllViewController.swift in Sources */,
 				DCB6F0421C5853AA005177A7 /* RadioPlayer.swift in Sources */,
 				3E04890C1C585108002CBBF7 /* AppDelegate.swift in Sources */,
+				3E59688B1CC95CFE00CC460B /* ScheduleItemCell.swift in Sources */,
+				3E5968891CC893FD00CC460B /* MessageBubble.swift in Sources */,
 				3EAA497E1C7A3D50004C5ACC /* ScheduleController.swift in Sources */,
 				3EA876131CC47EFE005685E8 /* TimePeriod.swift in Sources */,
 				3EA8760B1CC47E24005685E8 /* Show.swift in Sources */,
@@ -477,7 +482,6 @@
 				DCBFECCE1C98D73200F28095 /* Message.swift in Sources */,
 				DCDE66241C595E0400592D95 /* PlayerViewController.swift in Sources */,
 				3EA8760D1CC47E2E005685E8 /* Song.swift in Sources */,
-				DCBFECCC1C98D4A800F28095 /* MessageCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

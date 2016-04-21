@@ -35,10 +35,6 @@ class ScheduleController : AllViewController, UITableViewDataSource, UITableView
         let path: NSIndexPath = NSIndexPath(forRow: selectedDay, inSection: 0)
         self.daysOfWeekTable.selectRowAtIndexPath(path, animated: false, scrollPosition: .None)
         self.tableView(self.daysOfWeekTable, didSelectRowAtIndexPath: path)
-        self.daysOfWeekTable.estimatedRowHeight = self.daysOfWeekTable.frame.height / 7
-        self.scheduleTable.estimatedRowHeight = self.scheduleTable.frame.height / 10
-        self.daysOfWeekTable.rowHeight = UITableViewAutomaticDimension
-        self.scheduleTable.rowHeight = UITableViewAutomaticDimension
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -46,6 +42,14 @@ class ScheduleController : AllViewController, UITableViewDataSource, UITableView
             return 7
         } else {
             return 10
+        }
+    }
+
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if tableView == self.daysOfWeekTable {
+            return tableView.bounds.height / 7
+        } else {
+            return tableView.bounds.height / 10
         }
     }
     
@@ -74,6 +78,10 @@ class ScheduleController : AllViewController, UITableViewDataSource, UITableView
         }
     }
     
+    func getDateForIndexPath(path: NSIndexPath) -> NSDate {
+        return TimePeriod.getDate(selectedDay + 1, hour: (2 * path.row + 6) % 24)
+    }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if (tableView == self.daysOfWeekTable) {
             let id = "dayofweekcell"
@@ -87,39 +95,16 @@ class ScheduleController : AllViewController, UITableViewDataSource, UITableView
             return cell
         } else {
             let id = "scheduleitemcell"
-            var cell = tableView.dequeueReusableCellWithIdentifier(id) as! MGSwipeTableCell!
-            if cell == nil {
-                cell = MGSwipeTableCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: id)
-            }
-            let date = TimePeriod.getDate(selectedDay + 1, hour: (2 * indexPath.row + 6) % 24)
+            let date = getDateForIndexPath(indexPath)
             let show = Schedule.defaultSchedule.getShow(on: date)
             let period = show?.playingAtPeriod(date)
-            if let p = period {
-                cell.detailTextLabel!.text = show?.getTimeString(p) ?? ""
-            } else {
-                cell.detailTextLabel!.text = ""
+            var cell = tableView.dequeueReusableCellWithIdentifier(id) as! ScheduleItemCell!
+            if cell == nil {
+                cell = ScheduleItemCell(reuseIdentifier: id)
             }
-            cell.textLabel!.text = show?.name ?? ""
-            cell.backgroundColor = tableView.backgroundView?.backgroundColor
-            cell.textLabel?.textColor = UIColor.whiteColor()
-            cell.detailTextLabel?.textColor = UIColor.whiteColor()
+            cell.setup(show, period: period)
             cell.delegate = self
-            //configure right buttons
-            cell.rightButtons = [
-                MGSwipeButton(title: "Info", backgroundColor: UIColor.darkGrayColor()),
-                MGSwipeButton(title: "Favorite", backgroundColor: UIColor.lightGrayColor())
-            ]
-            cell.rightSwipeSettings.transition = .Drag
-            cell.selectionStyle = .None
             return cell
-        }
-    }
-    
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if tableView == self.daysOfWeekTable {
-            return tableView.bounds.height / 7
-        } else {
-            return tableView.bounds.height / 10
         }
     }
     
@@ -129,9 +114,14 @@ class ScheduleController : AllViewController, UITableViewDataSource, UITableView
     
     func swipeTableCell(cell: MGSwipeTableCell!, tappedButtonAtIndex index: Int, direction: MGSwipeDirection, fromExpansion: Bool) -> Bool {
         if (index == 0) { // Info
-            //
+            log.debug("Info button touched.")
         } else { // Favorite
-            
+            if let c = cell as! ScheduleItemCell! {
+                if let show = c.show {
+                    show.favorited = !show.favorited
+                    c.dataUpdated()
+                }
+            }
         }
         return true
     }

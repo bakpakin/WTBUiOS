@@ -50,11 +50,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillResignActive(application: UIApplication) {
-        
+        Schedule.defaultSchedule.saveToUserDefaults()
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
-        
+        Schedule.defaultSchedule.saveToUserDefaults()
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
@@ -66,7 +66,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(application: UIApplication) {
-        
+        Schedule.defaultSchedule.saveToUserDefaults()
+    }
+    
+    func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+        Schedule.defaultSchedule.load() {
+            schedule in
+            if let show = schedule.getCurrentShow() {
+                if show.favorited {
+                    let notification = UILocalNotification()
+                    notification.fireDate = NSDate(timeIntervalSinceNow: 3)
+                    notification.alertBody = "\"\(show.name)\" is on air!"
+                    notification.soundName = UILocalNotificationDefaultSoundName
+                    UIApplication.sharedApplication().scheduleLocalNotification(notification)
+                }
+            }
+        }
     }
 
 
