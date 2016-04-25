@@ -144,4 +144,25 @@ final class TimePeriod : NSObject, NSCoding {
         return "\(hour24to12(startHour)) - \(hour24to12(endHour))"
     }
     
+    
+    func nextDate(date: NSDate?) -> NSDate? {
+        let dt = date ?? NSDate()
+        if repeatsWeekly {
+            let dtNormalized = normalizeDate(dt)
+            let startN = startNormalized ? start : normalizeDate(start)
+            let delta = startN.timeIntervalSinceDate(dtNormalized)
+            if delta > 0 {
+                return dt.dateByAddingTimeInterval(delta)
+            } else {
+                return dt.dateByAddingTimeInterval(oneWeek - delta)
+            }
+        } else {
+            if start.timeIntervalSinceDate(dt) > 0 {
+                return start
+            } else {
+                return nil
+            }
+        }
+    }
+    
 }
