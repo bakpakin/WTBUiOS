@@ -21,7 +21,6 @@ import XCGLogger
 import AVFoundation
 import AudioToolbox
 import Alamofire
-import SWXMLHash
 let log = XCGLogger.defaultInstance()
 
 @UIApplicationMain

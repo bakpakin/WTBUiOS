@@ -9,7 +9,6 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-import SWXMLHash
 import XCGLogger
 
 class PlayerViewController: AllViewController {
