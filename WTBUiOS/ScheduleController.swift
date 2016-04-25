@@ -119,6 +119,7 @@ class ScheduleController : AllViewController, UITableViewDataSource, UITableView
             if let c = cell as! ScheduleItemCell! {
                 if let show = c.show {
                     show.favorited = !show.favorited
+                    Schedule.defaultSchedule.saveToUserDefaults()
                     c.dataUpdated()
                 }
             }

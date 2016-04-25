@@ -49,11 +49,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillResignActive(application: UIApplication) {
-        Schedule.defaultSchedule.saveToUserDefaults()
+        
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
-        Schedule.defaultSchedule.saveToUserDefaults()
+       
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
@@ -65,7 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(application: UIApplication) {
-        Schedule.defaultSchedule.saveToUserDefaults()
+        
     }
     
     func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {

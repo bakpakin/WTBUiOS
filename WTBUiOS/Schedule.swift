@@ -69,6 +69,7 @@ public class Schedule : NSObject, NSCoding {
         }
         // Remove any potentially bad cache date just in case.
         NSUserDefaults.standardUserDefaults().removeObjectForKey(showsKey)
+        NSUserDefaults.standardUserDefaults().removeObjectForKey(lastLoadedFromBackend)
         return false
     }
     
@@ -86,6 +87,7 @@ public class Schedule : NSObject, NSCoding {
                             foundShows.insert(show.id)
                         }
                     }
+                    NSUserDefaults.standardUserDefaults().setValue(NSKeyedArchiver.archivedDataWithRootObject(self.shows), forKey: self.showsKey)
                     NSUserDefaults.standardUserDefaults().setValue(NSDate(), forKey: self.lastLoadedFromBackend)
                     if let cb = callback {
                         return cb(self)
