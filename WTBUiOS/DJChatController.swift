@@ -20,9 +20,21 @@ class DJChatController : AllViewController, UITextFieldDelegate, UITableViewDele
     @IBOutlet weak var messageView: UITableView!
     
     var token: String?
+    var name: String = ""
     var timer: NSTimer = NSTimer()
     
     var messages = [Message]()
+    
+    func beginChat(token: String, name: String) {
+        self.token = token
+        self.name = name
+        timer = NSTimer.scheduledTimerWithTimeInterval(20.0, target: self, selector: #selector(DJChatController.getMessages), userInfo: nil, repeats: true)
+        getMessages()
+    }
+    
+    func endChat() {
+        timer.invalidate()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,33 +106,13 @@ class DJChatController : AllViewController, UITextFieldDelegate, UITableViewDele
             if text.characters.count > 0 {
                 if (self.token != nil) {
                     sendMessage(text)
-                } else {
-                    getTokenAndSendMessage(text)
                 }
+                log.debug("Failed message send")
+                (self.parentViewController as! MainChatController!).logOut()
             }
             textField.text = ""
         }
         return true
-    }
-    
-    
-    func getTokenAndSendMessage(message: String) {
-        // TODO Add Username
-        let parameters = [
-            "name": "User"
-        ]
-        Alamofire.request(.GET, "https://gaiwtbubackend.herokuapp.com/chatSession", parameters: parameters).responseJSON {
-            response in
-            if let jsonNative = response.result.value {
-                let json = JSON(jsonNative)
-                if let token = json["token"].string {
-                    self.token = token
-                    self.sendMessage(message)
-                } else {
-                    log.debug("Could not get token.")
-                }
-            }
-        }
     }
     
     func getMessages() {
@@ -169,7 +161,7 @@ class DJChatController : AllViewController, UITextFieldDelegate, UITableViewDele
         cell.detailTextLabel!.text = message.text
         cell.selectionStyle = .None
         return cell!
-    
+        
     }
     
 }

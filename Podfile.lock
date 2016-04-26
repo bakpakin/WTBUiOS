@@ -1,19 +1,27 @@
 PODS:
   - Alamofire (3.3.1)
+  - JSQMessagesViewController (7.2.0):
+    - JSQSystemSoundPlayer (~> 2.0.1)
+  - JSQSystemSoundPlayer (2.0.1)
   - MGSwipeTableCell (1.5.5)
   - SwiftyJSON (2.3.2)
   - XCGLogger (3.3)
 
 DEPENDENCIES:
   - Alamofire (~> 3.0)
+  - JSQMessagesViewController
   - MGSwipeTableCell
   - SwiftyJSON (~> 2.3)
   - XCGLogger (~> 3.2)
 
 SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
+  JSQMessagesViewController: 73cab48aa92fc2d512f3b6724f3425cc47a19eb5
+  JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   MGSwipeTableCell: bafeb5f351124544c9364ecbdf24c7b06a37d340
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   XCGLogger: d6e196e78940ff6daab17d6917107876f973fa31
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 4d86c3189bc6bb28a7c85c4b84d3c2c8d60ffb23
+
+COCOAPODS: 1.0.0.beta.8

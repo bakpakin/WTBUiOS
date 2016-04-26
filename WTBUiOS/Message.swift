@@ -2,7 +2,7 @@
 //  Message.swift
 //  WTBUiOS
 //
-//  Created by Ben Cootner on 3/15/16.
+//  Created by Calvin Rose on 4/26/16.
 //  Copyright © 2016 Calvin Rose. All rights reserved.
 //
 

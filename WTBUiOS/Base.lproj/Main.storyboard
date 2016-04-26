@@ -19,6 +19,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="500" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" misplaced="YES" placeholderIntrinsicWidth="3000" placeholderIntrinsicHeight="3000" image="Cover" translatesAutoresizingMaskIntoConstraints="NO" id="kV5-Cw-goF">
+                                <rect key="frame" x="50" y="84" width="400" height="400"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="kV5-Cw-goF" secondAttribute="height" multiplier="1:1" id="8sd-45-1tc"/>
+                                </constraints>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dk4-8F-KzM">
                                 <rect key="frame" x="243" y="499" width="14" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -57,12 +63,6 @@
                                     <navigationItem title="Radio" id="1aa-zV-Ir9"/>
                                 </items>
                             </navigationBar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" misplaced="YES" placeholderIntrinsicWidth="3000" placeholderIntrinsicHeight="3000" image="Cover" translatesAutoresizingMaskIntoConstraints="NO" id="kV5-Cw-goF">
-                                <rect key="frame" x="50" y="84" width="400" height="400"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="kV5-Cw-goF" secondAttribute="height" multiplier="1:1" id="8sd-45-1tc"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.86274509799999999" green="0.24313725489999999" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -99,7 +99,7 @@
         <!--Chat-->
         <scene sceneID="TVS-0o-Uu0">
             <objects>
-                <viewController id="eEH-Xv-GsS" customClass="DJChatController" customModule="WTBUiOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="eEH-Xv-GsS" customClass="MainChatController" customModule="WTBUiOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iRU-ko-0Wt"/>
                         <viewControllerLayoutGuide type="bottom" id="FrK-Pp-lve"/>
@@ -121,52 +121,38 @@
                                     <navigationItem title="DJ Chat" id="5zd-vt-bSx"/>
                                 </items>
                             </navigationBar>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type a message to the DJ..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZII-Cw-a8g">
-                                <rect key="frame" x="0.0" y="506" width="600" height="45"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="JjW-eV-Aoc"/>
-                                    <constraint firstAttribute="height" constant="45" id="Pdp-B1-FHb"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="send"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="JjW-eV-Aoc"/>
-                                    </mask>
-                                </variation>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tut-Nv-TI9">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <connections>
-                                    <outlet property="delegate" destination="eEH-Xv-GsS" id="njk-gs-Ovs"/>
+                                    <segue destination="HdB-0V-qtP" kind="embed" id="2JS-CJ-3Bt"/>
                                 </connections>
-                            </textField>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="A5Y-Zs-fDw">
-                                <rect key="frame" x="0.0" y="64" width="600" height="442"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PUl-qf-ZRA">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <connections>
-                                    <outlet property="dataSource" destination="eEH-Xv-GsS" id="4Ps-cr-IC5"/>
-                                    <outlet property="delegate" destination="eEH-Xv-GsS" id="isP-qJ-Hq2"/>
+                                    <segue destination="qXF-XC-Tak" kind="embed" id="H2k-Sw-YYs"/>
                                 </connections>
-                            </tableView>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" red="0.86274509803921573" green="0.24313725490196078" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="PUl-qf-ZRA" firstAttribute="leading" secondItem="bgB-HL-TLU" secondAttribute="leadingMargin" constant="-20" id="0S0-ur-UHx"/>
                             <constraint firstAttribute="trailingMargin" secondItem="WAx-a3-G0J" secondAttribute="trailing" constant="-20" id="8Xn-zi-GVx"/>
-                            <constraint firstItem="A5Y-Zs-fDw" firstAttribute="leading" secondItem="bgB-HL-TLU" secondAttribute="leadingMargin" constant="-20" id="Gyv-2R-xJB"/>
+                            <constraint firstItem="PUl-qf-ZRA" firstAttribute="top" secondItem="WAx-a3-G0J" secondAttribute="bottom" id="OFr-SK-dlL"/>
                             <constraint firstItem="WAx-a3-G0J" firstAttribute="leading" secondItem="bgB-HL-TLU" secondAttribute="leadingMargin" constant="-20" id="TLs-3R-iZH"/>
-                            <constraint firstItem="ZII-Cw-a8g" firstAttribute="trailing" secondItem="bgB-HL-TLU" secondAttribute="trailingMargin" constant="20" id="UqX-5Y-Uch"/>
-                            <constraint firstItem="ZII-Cw-a8g" firstAttribute="leading" secondItem="bgB-HL-TLU" secondAttribute="leadingMargin" constant="-20" id="aa4-tc-Kys"/>
-                            <constraint firstItem="FrK-Pp-lve" firstAttribute="top" secondItem="ZII-Cw-a8g" secondAttribute="bottom" id="bPb-XZ-qYo"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="tut-Nv-TI9" secondAttribute="trailing" constant="-20" id="YrL-W4-rSL"/>
+                            <constraint firstItem="FrK-Pp-lve" firstAttribute="top" secondItem="tut-Nv-TI9" secondAttribute="bottom" id="aaE-FT-b7u"/>
                             <constraint firstItem="WAx-a3-G0J" firstAttribute="top" secondItem="iRU-ko-0Wt" secondAttribute="bottom" id="eBx-dJ-Stb"/>
-                            <constraint firstItem="ZII-Cw-a8g" firstAttribute="top" secondItem="A5Y-Zs-fDw" secondAttribute="bottom" id="fTZ-Xi-BaM"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="A5Y-Zs-fDw" secondAttribute="trailing" constant="-20" id="snY-OS-XEl"/>
-                            <constraint firstItem="A5Y-Zs-fDw" firstAttribute="top" secondItem="WAx-a3-G0J" secondAttribute="bottom" id="zqj-Ax-Oe7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="PUl-qf-ZRA" secondAttribute="trailing" constant="-20" id="gv7-HY-7N5"/>
+                            <constraint firstItem="tut-Nv-TI9" firstAttribute="top" secondItem="WAx-a3-G0J" secondAttribute="bottom" id="lvM-As-1S8"/>
+                            <constraint firstItem="tut-Nv-TI9" firstAttribute="leading" secondItem="bgB-HL-TLU" secondAttribute="leadingMargin" constant="-20" id="uWP-FZ-HpE"/>
+                            <constraint firstItem="FrK-Pp-lve" firstAttribute="top" secondItem="PUl-qf-ZRA" secondAttribute="bottom" id="wrb-jI-q4I"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Chat" image="Chats" selectedImage="Chats" id="4fq-Ev-xfC"/>
                     <connections>
-                        <outlet property="bottomConstraint" destination="bPb-XZ-qYo" id="nov-G6-2rd"/>
-                        <outlet property="inputText" destination="ZII-Cw-a8g" id="ukn-sh-Iyr"/>
-                        <outlet property="messageView" destination="A5Y-Zs-fDw" id="QYx-s8-tRC"/>
+                        <outlet property="chatContainer" destination="tut-Nv-TI9" id="v5o-uv-ewT"/>
+                        <outlet property="loginContainer" destination="PUl-qf-ZRA" id="EfT-3o-5lJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fvA-3c-f2h" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -359,6 +345,100 @@
             </objects>
             <point key="canvasLocation" x="-22" y="27"/>
         </scene>
+        <!--Login Controller-->
+        <scene sceneID="YCk-HR-Til">
+            <objects>
+                <viewController id="qXF-XC-Tak" customClass="DJLoginController" customModule="WTBUiOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tDF-bN-XAr"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZhH-UJ-SWb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qPH-fV-eLy">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x3n-05-yDH">
+                                <rect key="frame" x="277" y="324" width="46" height="30"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="login:" destination="qXF-XC-Tak" eventType="touchUpInside" id="23v-pX-2l9"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter chat nickname..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cmW-6g-FbQ">
+                                <rect key="frame" x="175" y="286" width="250" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="QMg-oT-ElT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" red="0.86274509803921573" green="0.24313725490196078" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="cmW-6g-FbQ" firstAttribute="centerY" secondItem="qPH-fV-eLy" secondAttribute="centerY" id="1o1-nB-tTY"/>
+                            <constraint firstItem="cmW-6g-FbQ" firstAttribute="centerX" secondItem="qPH-fV-eLy" secondAttribute="centerX" id="5wW-NG-vpG"/>
+                            <constraint firstItem="x3n-05-yDH" firstAttribute="top" secondItem="cmW-6g-FbQ" secondAttribute="bottom" constant="8" symbolic="YES" id="Rsp-Xp-7v8"/>
+                            <constraint firstItem="x3n-05-yDH" firstAttribute="centerX" secondItem="qPH-fV-eLy" secondAttribute="centerX" id="tbR-91-rqS"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="chatnameField" destination="cmW-6g-FbQ" id="wZq-d6-j8P"/>
+                        <outlet property="loginButton" destination="x3n-05-yDH" id="ut5-kr-Iru"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hgd-nH-SgB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-373" y="1588.5"/>
+        </scene>
+        <!--Chat Controller-->
+        <scene sceneID="iPj-vU-EnZ">
+            <objects>
+                <viewController id="HdB-0V-qtP" customClass="DJChatController" customModule="WTBUiOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mUN-2r-Uy3"/>
+                        <viewControllerLayoutGuide type="bottom" id="oRQ-eX-Ttw"/>
+                    </layoutGuides>
+                    <view key="view" userInteractionEnabled="NO" contentMode="scaleToFill" id="Ugp-Dk-K8n">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qUt-3A-ast">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="460"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="HdB-0V-qtP" id="TKV-TP-qjL"/>
+                                    <outlet property="delegate" destination="HdB-0V-qtP" id="ZWW-nB-dBO"/>
+                                </connections>
+                            </tableView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bMj-9h-yft">
+                                <rect key="frame" x="0.0" y="457" width="600" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" red="0.86274509803921573" green="0.24313725490196078" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="qUt-3A-ast" firstAttribute="leading" secondItem="Ugp-Dk-K8n" secondAttribute="leadingMargin" constant="-20" id="9q3-IW-5I5"/>
+                            <constraint firstItem="oRQ-eX-Ttw" firstAttribute="top" secondItem="bMj-9h-yft" secondAttribute="bottom" id="Aak-zt-Yxc"/>
+                            <constraint firstItem="bMj-9h-yft" firstAttribute="top" secondItem="qUt-3A-ast" secondAttribute="bottom" id="Pzs-nJ-kI6"/>
+                            <constraint firstItem="qUt-3A-ast" firstAttribute="top" secondItem="mUN-2r-Uy3" secondAttribute="bottom" id="lVI-aj-Fdh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="qUt-3A-ast" secondAttribute="trailing" constant="-20" id="lde-dy-mVx"/>
+                            <constraint firstItem="bMj-9h-yft" firstAttribute="leading" secondItem="Ugp-Dk-K8n" secondAttribute="leadingMargin" constant="-20" id="oX3-pA-RLH"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bMj-9h-yft" secondAttribute="trailing" constant="-20" id="qNp-XS-DcF"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="bottomConstraint" destination="Aak-zt-Yxc" id="TUg-pZ-3dj"/>
+                        <outlet property="inputText" destination="bMj-9h-yft" id="IN6-wB-gIR"/>
+                        <outlet property="messageView" destination="qUt-3A-ast" id="SP8-4f-Ew1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="raE-1j-1zc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="415" y="1554.5"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Chats" width="24" height="23"/>
@@ -367,7 +447,7 @@
         <image name="Donate" width="200" height="200"/>
         <image name="Hearts" width="35" height="26"/>
         <image name="Radio" width="19" height="24"/>
-        <image name="play.png" width="512" height="512"/>
+        <image name="play.png" width="28" height="28"/>
     </resources>
     <color key="tintColor" red="0.86274509799999999" green="0.24313725489999999" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
 </document>
