@@ -145,7 +145,7 @@ final class TimePeriod : NSObject, NSCoding {
     }
     
     
-    func nextDate(date: NSDate?) -> NSDate? {
+    func nextDate(date: NSDate? = nil) -> NSDate? {
         let dt = date ?? NSDate()
         if repeatsWeekly {
             let dtNormalized = normalizeDate(dt)

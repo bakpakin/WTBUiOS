@@ -21,7 +21,8 @@ class PlayerViewController: AllViewController {
     var timer: NSTimer = NSTimer()
     
     func getCurrentSongData() {
-        getSongData()
+        // Remove the id argumnet for production when spinitron comes back on.
+        getSongData(1234)
     }
     
     func setAlbumImage(image: UIImage!) {

@@ -29,12 +29,22 @@ class ScheduleController : AllViewController, UITableViewDataSource, UITableView
         Schedule.defaultSchedule.load() {
             schedule in
             self.scheduleTable.reloadData()
-            Schedule.defaultSchedule.saveToUserDefaults()
         }
         selectedDay = getDayOfWeek()
         let path: NSIndexPath = NSIndexPath(forRow: selectedDay, inSection: 0)
         self.daysOfWeekTable.selectRowAtIndexPath(path, animated: false, scrollPosition: .None)
         self.tableView(self.daysOfWeekTable, didSelectRowAtIndexPath: path)
+        
+        let show = Schedule.defaultSchedule.getCurrentShow()
+        log.debug(show?.debugDescription)
+        
+        let notification = UILocalNotification()
+        notification.fireDate = NSDate().dateByAddingTimeInterval(4)
+        notification.alertBody = "Notifications are on air!"
+        notification.repeatInterval = NSCalendarUnit.Weekday
+        notification.soundName = UILocalNotificationDefaultSoundName
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -113,13 +123,11 @@ class ScheduleController : AllViewController, UITableViewDataSource, UITableView
     }
     
     func swipeTableCell(cell: MGSwipeTableCell!, tappedButtonAtIndex index: Int, direction: MGSwipeDirection, fromExpansion: Bool) -> Bool {
-        if (index == 0) { // Info
-            log.debug("Info button touched.")
-        } else { // Favorite
+        if (index == 0) { // Favorite
             if let c = cell as! ScheduleItemCell! {
                 if let show = c.show {
                     show.favorited = !show.favorited
-                    Schedule.defaultSchedule.saveToUserDefaults()
+                    Schedule.defaultSchedule.saveFavorites()
                     c.dataUpdated()
                 }
             }

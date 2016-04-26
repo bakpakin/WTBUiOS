@@ -15,7 +15,6 @@ class ScheduleItemCell : MGSwipeTableCell {
     var show: Show?
     var period: TimePeriod?
     let favoriteButton: MGSwipeButton
-    let infoButton: MGSwipeButton
  
     required init?(coder aDecoder: NSCoder) {
         fatalError("Not Implemeted.")
@@ -40,11 +39,10 @@ class ScheduleItemCell : MGSwipeTableCell {
     }
     
     init(reuseIdentifier: String) {
-        infoButton = MGSwipeButton(title: "Info", backgroundColor: UIColor.darkGrayColor())!
         // Set start text to "Unfollow" because it is longer and will make the cell the right width
         favoriteButton = MGSwipeButton(title: "Unfollow", backgroundColor: UIColor.lightGrayColor())!
         super.init(style: UITableViewCellStyle.Subtitle, reuseIdentifier: reuseIdentifier)
-        rightButtons = [infoButton, favoriteButton]
+        rightButtons = [favoriteButton]
         rightSwipeSettings.transition = .Drag
         selectionStyle = .None
         backgroundColor = UIColor.clearColor()

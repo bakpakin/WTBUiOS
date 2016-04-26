@@ -17,6 +17,7 @@
 		3E2FB69E1C74F58E00448F23 /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E2FB69C1C74F58E00448F23 /* pause.png */; };
 		3E5968891CC893FD00CC460B /* MessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5968881CC893FD00CC460B /* MessageBubble.swift */; };
 		3E59688B1CC95CFE00CC460B /* ScheduleItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E59688A1CC95CFE00CC460B /* ScheduleItemCell.swift */; };
+		3E8DF0E01CCFD2C400145719 /* GeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8DF0DF1CCFD2C400145719 /* GeneralViewController.swift */; };
 		3EA8760B1CC47E24005685E8 /* Show.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA8760A1CC47E24005685E8 /* Show.swift */; };
 		3EA8760D1CC47E2E005685E8 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA8760C1CC47E2E005685E8 /* Song.swift */; };
 		3EA876131CC47EFE005685E8 /* TimePeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA876121CC47EFE005685E8 /* TimePeriod.swift */; };
@@ -76,6 +77,7 @@
 		3E2FB69C1C74F58E00448F23 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
 		3E5968881CC893FD00CC460B /* MessageBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageBubble.swift; sourceTree = "<group>"; };
 		3E59688A1CC95CFE00CC460B /* ScheduleItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleItemCell.swift; sourceTree = "<group>"; };
+		3E8DF0DF1CCFD2C400145719 /* GeneralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralViewController.swift; sourceTree = "<group>"; };
 		3EA8760A1CC47E24005685E8 /* Show.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Show.swift; sourceTree = "<group>"; };
 		3EA8760C1CC47E2E005685E8 /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		3EA876121CC47EFE005685E8 /* TimePeriod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePeriod.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				3EAA497D1C7A3D50004C5ACC /* ScheduleController.swift */,
 				3EAA497F1C7A4515004C5ACC /* DJChatController.swift */,
 				3EAA498C1C7A855E004C5ACC /* AllViewController.swift */,
+				3E8DF0DF1CCFD2C400145719 /* GeneralViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -243,8 +246,8 @@
 			isa = PBXGroup;
 			children = (
 				DCBFECCD1C98D73200F28095 /* Message.swift */,
-				3EA8760A1CC47E24005685E8 /* Show.swift */,
 				3EA8760C1CC47E2E005685E8 /* Song.swift */,
+				3EA8760A1CC47E24005685E8 /* Show.swift */,
 				3EA876121CC47EFE005685E8 /* TimePeriod.swift */,
 				3EA876141CC47F6D005685E8 /* DJ.swift */,
 				3EA876161CC47FB5005685E8 /* Schedule.swift */,
@@ -480,6 +483,7 @@
 				3EA876171CC47FB5005685E8 /* Schedule.swift in Sources */,
 				3EA876151CC47F6D005685E8 /* DJ.swift in Sources */,
 				DCBFECCE1C98D73200F28095 /* Message.swift in Sources */,
+				3E8DF0E01CCFD2C400145719 /* GeneralViewController.swift in Sources */,
 				DCDE66241C595E0400592D95 /* PlayerViewController.swift in Sources */,
 				3EA8760D1CC47E2E005685E8 /* Song.swift in Sources */,
 			);

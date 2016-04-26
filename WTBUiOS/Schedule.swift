@@ -22,7 +22,6 @@ public class Schedule : NSObject, NSCoding {
     
     public override init() {
         shows = []
-        super.init()
     }
     
     public func encodeWithCoder(aCoder: NSCoder) {
@@ -43,7 +42,7 @@ public class Schedule : NSObject, NSCoding {
         }
     }
     
-    func saveToUserDefaults() {
+    func saveFavorites() {
         var favorites = [Int]()
         for show in shows {
             if show.favorited {
@@ -51,10 +50,14 @@ public class Schedule : NSObject, NSCoding {
             }
         }
         NSUserDefaults.standardUserDefaults().setValue(favorites, forKey: favoritesKey)
+    }
+    
+    private func saveToUserDefaults() {
+        saveFavorites()
         NSUserDefaults.standardUserDefaults().setValue(NSKeyedArchiver.archivedDataWithRootObject(shows), forKey: showsKey)
     }
     
-    func loadFromUserDefaults() -> Bool {
+    private func loadFromUserDefaults() -> Bool {
         if let lastBackendLoad = NSUserDefaults.standardUserDefaults().objectForKey(lastLoadedFromBackend) as? NSDate {
             // If has been less than 3 days since last backend load.
             // This ensures that users don't get really old data.
@@ -73,7 +76,7 @@ public class Schedule : NSObject, NSCoding {
         return false
     }
     
-    func loadFromBackend(callback: ((Schedule)->Void)?) {
+    private func loadFromBackend(callback: ((Schedule)->Void)? = nil) {
         Alamofire.request(.GET, "https://gaiwtbubackend.herokuapp.com/regularShowsInfo").responseJSON {
             response in
             if let nativeJson = response.result.value {
@@ -87,8 +90,8 @@ public class Schedule : NSObject, NSCoding {
                             foundShows.insert(show.id)
                         }
                     }
-                    NSUserDefaults.standardUserDefaults().setValue(NSKeyedArchiver.archivedDataWithRootObject(self.shows), forKey: self.showsKey)
                     NSUserDefaults.standardUserDefaults().setValue(NSDate(), forKey: self.lastLoadedFromBackend)
+                    self.saveToUserDefaults()
                     if let cb = callback {
                         return cb(self)
                     }
@@ -101,7 +104,7 @@ public class Schedule : NSObject, NSCoding {
         }
     }
     
-    func load(callback: ((Schedule)->Void)?) {
+    func load(callback: ((Schedule)->Void)? = nil) {
         if loadFromUserDefaults() {
             if let cb = callback {
                 cb(self)
@@ -127,6 +130,24 @@ public class Schedule : NSObject, NSCoding {
     
     func getShow(onDayOfWeek: Int, atHour: Int) -> Show? {
         return getShow(on: TimePeriod.getDate(onDayOfWeek, hour: atHour))
+    }
+    
+    func addNotifications() {
+        UIApplication.sharedApplication().cancelAllLocalNotifications()
+        
+        for show in shows {
+            if !show.favorited {
+                continue
+            }
+            for time in show.showTimes {
+                let notification = UILocalNotification()
+                notification.fireDate = time.nextDate()
+                notification.alertBody = "\"\(show.name)\" is on air!"
+                notification.repeatInterval = NSCalendarUnit.Weekday
+                notification.soundName = UILocalNotificationDefaultSoundName
+                UIApplication.sharedApplication().scheduleLocalNotification(notification)
+            }
+        }
     }
     
 }

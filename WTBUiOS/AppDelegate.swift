@@ -43,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabBarController.selectedIndex = 1
         
         // Notifcations
-        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Alert, categories: nil))
+        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Sound, .Alert, .Badge], categories: nil))
         
         return true
     }
@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
-       
+        Schedule.defaultSchedule.addNotifications()
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
@@ -61,26 +61,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
-        
+        Schedule.defaultSchedule.load()
     }
 
     func applicationWillTerminate(application: UIApplication) {
-        
+        Schedule.defaultSchedule.addNotifications()
     }
     
     func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-        Schedule.defaultSchedule.load() {
-            schedule in
-            if let show = schedule.getCurrentShow() {
-                if show.favorited {
-                    let notification = UILocalNotification()
-                    notification.fireDate = NSDate(timeIntervalSinceNow: 3)
-                    notification.alertBody = "\"\(show.name)\" is on air!"
-                    notification.soundName = UILocalNotificationDefaultSoundName
-                    UIApplication.sharedApplication().scheduleLocalNotification(notification)
-                }
-            }
-        }
+        
     }
 
 

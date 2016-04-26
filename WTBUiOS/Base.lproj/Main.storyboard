@@ -7,7 +7,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Player View Controller-->
+        <!--Radio-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="middle" id="BYZ-38-t0r" customClass="PlayerViewController" customModule="WTBUiOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -19,25 +19,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="500" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" image="Cover" translatesAutoresizingMaskIntoConstraints="NO" id="kV5-Cw-goF">
-                                <rect key="frame" x="50" y="84" width="400" height="400"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="kV5-Cw-goF" secondAttribute="height" multiplier="1:1" id="8sd-45-1tc"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dk4-8F-KzM">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dk4-8F-KzM">
                                 <rect key="frame" x="243" y="499" width="14" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qea-hr-Ob1">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" misplaced="YES" text="..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qea-hr-Ob1">
                                 <rect key="frame" x="244" y="524" width="13" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" alpha="0.65000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LjB-la-FCc">
+                            <button opaque="NO" alpha="0.65000000000000002" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LjB-la-FCc">
                                 <rect key="frame" x="186" y="220" width="128" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="0Jy-oF-6fo"/>
@@ -63,6 +57,12 @@
                                     <navigationItem title="Radio" id="1aa-zV-Ir9"/>
                                 </items>
                             </navigationBar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" misplaced="YES" placeholderIntrinsicWidth="3000" placeholderIntrinsicHeight="3000" image="Cover" translatesAutoresizingMaskIntoConstraints="NO" id="kV5-Cw-goF">
+                                <rect key="frame" x="50" y="84" width="400" height="400"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="kV5-Cw-goF" secondAttribute="height" multiplier="1:1" id="8sd-45-1tc"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.86274509799999999" green="0.24313725489999999" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -82,9 +82,7 @@
                             <constraint firstItem="Dk4-8F-KzM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="uFv-W5-8L3"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="Radio" selectedImage="Radio" id="5mp-PY-X5T">
-                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="10"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Radio" image="Radio" selectedImage="Radio" id="5mp-PY-X5T"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="500" height="600"/>
                     <connections>
@@ -98,7 +96,7 @@
             </objects>
             <point key="canvasLocation" x="679" y="27"/>
         </scene>
-        <!--Chat Controller-->
+        <!--Chat-->
         <scene sceneID="TVS-0o-Uu0">
             <objects>
                 <viewController id="eEH-Xv-GsS" customClass="DJChatController" customModule="WTBUiOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -164,9 +162,7 @@
                             <constraint firstItem="A5Y-Zs-fDw" firstAttribute="top" secondItem="WAx-a3-G0J" secondAttribute="bottom" id="zqj-Ax-Oe7"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" image="Chats" selectedImage="Chats" id="4fq-Ev-xfC">
-                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="10"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Chat" image="Chats" selectedImage="Chats" id="4fq-Ev-xfC"/>
                     <connections>
                         <outlet property="bottomConstraint" destination="bPb-XZ-qYo" id="nov-G6-2rd"/>
                         <outlet property="inputText" destination="ZII-Cw-a8g" id="ukn-sh-Iyr"/>
@@ -177,7 +173,7 @@
             </objects>
             <point key="canvasLocation" x="-349" y="805"/>
         </scene>
-        <!--Schedule Controller-->
+        <!--Schedule-->
         <scene sceneID="EGn-bL-F9c">
             <objects>
                 <viewController id="brn-5G-Bi9" customClass="ScheduleController" customModule="WTBUiOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -216,8 +212,8 @@
                                     <outlet property="delegate" destination="brn-5G-Bi9" id="5cC-zG-ped"/>
                                 </connections>
                             </tableView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7Mr-Nj-ZbF">
-                                <rect key="frame" x="83" y="64" width="517" height="467"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7Mr-Nj-ZbF">
+                                <rect key="frame" x="86" y="64" width="517" height="467"/>
                                 <color key="backgroundColor" red="0.86274509799999999" green="0.24313725489999999" blue="0.24155809973624162" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.86274509803921573" green="0.24313725490196078" blue="0.24155809974996711" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexTrackingBackgroundColor" red="0.86274509799999999" green="0.24313725489999999" blue="0.24155809973624162" alpha="1" colorSpace="calibratedRGB"/>
@@ -241,9 +237,7 @@
                             <constraint firstItem="eXr-Wo-SDx" firstAttribute="leading" secondItem="lUL-q7-2AU" secondAttribute="leadingMargin" constant="-20" id="y5I-8d-MNu"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" image="DJ" selectedImage="DJ" id="CSM-73-aKn">
-                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="10"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Schedule" image="DJ" selectedImage="DJ" id="CSM-73-aKn"/>
                     <connections>
                         <outlet property="daysOfWeekTable" destination="gbO-Cc-a0n" id="KHd-40-9gZ"/>
                         <outlet property="scheduleTable" destination="7Mr-Nj-ZbF" id="v82-LD-yKC"/>
@@ -252,6 +246,96 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TzF-fJ-RLl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="306" y="805"/>
+        </scene>
+        <!--More-->
+        <scene sceneID="uSH-Po-sB3">
+            <objects>
+                <viewController id="lBt-LG-pt5" customClass="GeneralViewController" customModule="WTBUiOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="O7r-Un-yGc"/>
+                        <viewControllerLayoutGuide type="bottom" id="po0-Nt-cQN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Dfj-r3-mob">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NQV-9V-rp4">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <color key="backgroundColor" red="0.86274509803921573" green="0.24313725490196078" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="yYF-D8-ngq"/>
+                                </constraints>
+                                <color key="barTintColor" red="0.86274509803921573" green="0.24313725490196078" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="About" id="5Dk-Zw-eg3"/>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WTBU" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OXo-Ww-Wwa">
+                                <rect key="frame" x="20" y="72" width="560" height="77"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="77" id="84A-a1-ae1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="48"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="89.3 FM | 640 AM | BU CHANNEL 6" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="REo-Uc-m3f">
+                                <rect key="frame" x="163" y="181" width="274" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Beat of Boston University" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KzX-w0-4yj">
+                                <rect key="frame" x="186" y="157" width="228" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b52-hZ-0nD">
+                                <rect key="frame" x="200" y="311" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="AuJ-Ec-292"/>
+                                    <constraint firstAttribute="width" constant="200" id="cRS-me-fNO"/>
+                                    <constraint firstAttribute="width" secondItem="b52-hZ-0nD" secondAttribute="height" multiplier="1:1" id="lqy-lj-SZD"/>
+                                </constraints>
+                                <state key="normal" image="Donate">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="donateButtonPressed:" destination="lBt-LG-pt5" eventType="touchUpInside" id="IFI-h9-wqJ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.86274509803921573" green="0.24313725490196078" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.86274509799999999" green="0.24313725489999999" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="REo-Uc-m3f" firstAttribute="top" secondItem="KzX-w0-4yj" secondAttribute="bottom" constant="8" id="3P4-Of-BhK"/>
+                            <constraint firstItem="OXo-Ww-Wwa" firstAttribute="trailing" secondItem="Dfj-r3-mob" secondAttribute="trailingMargin" id="Iec-QE-ABa"/>
+                            <constraint firstItem="b52-hZ-0nD" firstAttribute="centerX" secondItem="Dfj-r3-mob" secondAttribute="centerX" id="WYA-6g-BLB"/>
+                            <constraint firstItem="po0-Nt-cQN" firstAttribute="top" secondItem="b52-hZ-0nD" secondAttribute="bottom" constant="40" id="YWF-Al-5Cq"/>
+                            <constraint firstItem="OXo-Ww-Wwa" firstAttribute="centerX" secondItem="Dfj-r3-mob" secondAttribute="centerX" id="ZFT-vA-c3A"/>
+                            <constraint firstItem="NQV-9V-rp4" firstAttribute="leading" secondItem="Dfj-r3-mob" secondAttribute="leadingMargin" constant="-20" id="bm0-Jc-zCY"/>
+                            <constraint firstItem="REo-Uc-m3f" firstAttribute="centerX" secondItem="Dfj-r3-mob" secondAttribute="centerX" id="lUs-wc-VQW"/>
+                            <constraint firstItem="KzX-w0-4yj" firstAttribute="top" secondItem="OXo-Ww-Wwa" secondAttribute="bottom" constant="8" id="nAh-6l-otp"/>
+                            <constraint firstItem="KzX-w0-4yj" firstAttribute="centerX" secondItem="Dfj-r3-mob" secondAttribute="centerX" id="nRL-Dj-T9e"/>
+                            <constraint firstItem="OXo-Ww-Wwa" firstAttribute="leading" secondItem="Dfj-r3-mob" secondAttribute="leadingMargin" id="nWa-8n-Txc"/>
+                            <constraint firstItem="NQV-9V-rp4" firstAttribute="top" secondItem="O7r-Un-yGc" secondAttribute="bottom" id="pI3-Dl-QeA"/>
+                            <constraint firstItem="OXo-Ww-Wwa" firstAttribute="top" secondItem="NQV-9V-rp4" secondAttribute="bottom" constant="8" id="pfy-gd-VS2"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="NQV-9V-rp4" secondAttribute="trailing" constant="-20" id="tFl-Ju-xcw"/>
+                            <constraint firstItem="REo-Uc-m3f" firstAttribute="top" secondItem="KzX-w0-4yj" secondAttribute="bottom" constant="8" id="uSV-S2-5lc"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="More" image="Hearts" selectedImage="Hearts" id="i92-WH-iZa"/>
+                    <connections>
+                        <outlet property="donateButton" destination="b52-hZ-0nD" id="JnP-Pv-Rib"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6LN-tl-img" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="977" y="805"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="D0l-Hc-JH2">
@@ -268,6 +352,7 @@
                         <segue destination="brn-5G-Bi9" kind="relationship" relationship="viewControllers" id="bFV-6z-9NX"/>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="37k-SB-4tO"/>
                         <segue destination="eEH-Xv-GsS" kind="relationship" relationship="viewControllers" id="Wu6-yl-pb5"/>
+                        <segue destination="lBt-LG-pt5" kind="relationship" relationship="viewControllers" id="KGK-e9-lmw"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XyT-5K-S4q" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -279,6 +364,8 @@
         <image name="Chats" width="24" height="23"/>
         <image name="Cover" width="674" height="674"/>
         <image name="DJ" width="24" height="24"/>
+        <image name="Donate" width="200" height="200"/>
+        <image name="Hearts" width="35" height="26"/>
         <image name="Radio" width="19" height="24"/>
         <image name="play.png" width="512" height="512"/>
     </resources>
