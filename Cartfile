@@ -1,0 +1,4 @@
+github "Alamofire/Alamofire"
+github "DaveWoodCom/XCGLogger"
+github "SwiftyJSON/SwiftyJSON"
+github "MortimerGoro/MGSwipeTableCell"
